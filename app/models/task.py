@@ -16,7 +16,7 @@ class Task(db.Model):
     priority = db.Column(db.Integer)
     due_date = db.Column(db.Date)
     due_time = db.Column(db.Time)
-    duration = db.column(db.Interval)
+    duration = db.Column(db.Interval)
     repeat = db.Column(db.Boolean)
     repeat_type = db.Column(db.String(20))
     repeat_start = db.Column(db.Date)
@@ -26,7 +26,7 @@ class Task(db.Model):
     project = db.relationship('Project', back_populates='tasks')
     subtasks = db.relationship('Task', back_populates='parent_task', cascade='all, delete')
     parent_task = db.relationship('Task', remote_side=[id], back_populates='subtasks')
-    task_occurrances = db.relationship('Task_Occurrance', back_populates='task', cascade='all, delete')
+    task_occurrences = db.relationship('Task_Occurrence', back_populates='task', cascade='all, delete')
     section = db.relationship('Section', back_populates='tasks')
 
     def add_subtask(self, subtask):
