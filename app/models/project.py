@@ -23,5 +23,5 @@ class Project(db.Model):
             'name': self.name,
             'description': self.description,
             'color': self.color,
-            'sections': [section.to_dict() for section in self.sections]
+            # 'sections': [section.to_dict() for section in self.sections]
         }

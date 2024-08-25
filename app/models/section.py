@@ -18,5 +18,5 @@ class Section(db.Model):
             'id': self.id,
             'project_id': self.project_id,
             'name': self.name,
-            'tasks': [task.to_dict() for task in self.tasks]
+            # 'tasks': [task.to_dict() for task in self.tasks]
         }
