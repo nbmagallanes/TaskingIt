@@ -8,7 +8,7 @@ class Task(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('projects.id')))
+    project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('projects.id')), nullable=False)
     section_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('sections.id')))
     parent_task_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tasks.id')))
     title = db.Column(db.String(255), nullable=False)

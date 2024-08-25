@@ -16,8 +16,7 @@ class Section(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            'project_id': self.project_id,
             'name': self.name,
-            'description': self.description,
-            'color': self.color
+            'tasks': [task.to_dict() for task in self.tasks]
         }

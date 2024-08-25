@@ -8,7 +8,7 @@ class Task_Occurrence(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tasks.id')), nullable=False)
-    occurrence_date = db.Column(db.Date, nullable=False)
+    occurrence_date = db.Column(db.Date)
     started_at = db.Column(db.DateTime)
     completed_at = db.Column(db.DateTime)
 
