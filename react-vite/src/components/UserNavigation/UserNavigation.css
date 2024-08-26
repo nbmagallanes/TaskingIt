@@ -1,0 +1,12 @@
+.usernav-container {
+    padding: 20px;
+    position: absolute;
+    width: 240px;
+    height: 100%;
+    background-color: rgb(242, 242, 242);
+}
+
+.usernav-tab {
+    display: flex;
+    margin: 20px 0px
+}

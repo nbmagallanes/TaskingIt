@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
-import ProfileButton from "./ProfileButton";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
 
 function Navigation() {
@@ -9,9 +11,20 @@ function Navigation() {
         <NavLink to="/">Home</NavLink>
       </li>
 
-      <li>
-        <ProfileButton />
-      </li>
+      <div>
+        <OpenModalMenuItem
+          itemText="Log In"
+          // onItemClick={closeMenu}
+          modalComponent={<LoginFormModal />}
+        />
+      </div>
+      <div>
+        <OpenModalMenuItem
+          itemText="Sign Up"
+          // onItemClick={closeMenu}
+          modalComponent={<SignupFormModal />}
+        />
+      </div>
     </ul>
   );
 }
