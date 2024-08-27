@@ -7,6 +7,7 @@ import TodayPage from '../components/TodayPage/TodayPage';
 import Inbox from '../components/Inbox/Inbox'
 import Upcoming from '../components/Upcoming';
 import MyProjects from '../components/MyProjects';
+import Project from '../components/Project'
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/:userId/projects",
         element: <MyProjects />
+      },
+      {
+        path: "/:userId/projects/:projectId",
+        element: <Project />
       },
     ]
   }

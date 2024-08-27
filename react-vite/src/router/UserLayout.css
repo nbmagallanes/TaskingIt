@@ -1,0 +1,10 @@
+.user-layout-container {
+    display: flex;
+    height: 100%;
+  }
+  
+  .user-layout-outlet {
+    flex: 1;
+    padding: 20px;
+  }
+  

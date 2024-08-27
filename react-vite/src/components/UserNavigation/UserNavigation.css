@@ -1,12 +1,78 @@
 .usernav-container {
-    padding: 20px;
-    position: absolute;
-    width: 240px;
-    height: 100%;
+    padding: 10px;
+    width: 260px;
+    height: auto;
     background-color: rgb(242, 242, 242);
 }
 
 .usernav-tab {
     display: flex;
-    margin: 20px 0px
+    margin: 12px 0px;
+    padding: 4px;
+    height: 27px;
+    align-items: center;
+}
+.my-projects-container, .single-project-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.usernav-tab:hover {
+    background-color: rgba(211, 211, 211, 0.45);
+    border-radius: 3px;
+}
+
+.my-projects {
+    flex: 1
+}
+
+.usernav-add-project {
+    border: none;
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    visibility: hidden;
+}
+
+.my-projects-container:hover .usernav-add-project,
+.single-project-container:hover .usernav-add-project {
+    visibility: visible
+}
+
+.usernav-add-project:hover {
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 110px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 16px;
+}
+
+.usernav-project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-list .tooltiptext-list {
+    width: 150px;
 }

@@ -1,37 +1,32 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Outlet} from "react-router-dom";
+import { useDispatch} from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
 import { thunkAuthenticate } from "../redux/session";
 import UserNavigation from "../components/UserNavigation";
+import './UserLayout.css'
 
 export default function UserLayout() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector((state) => state.session.user);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
+    dispatch(thunkAuthenticate()).then(() => setIsUserLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (isLoaded && !user) {
-      navigate("/");
-    }
-  }, [user]);
-
   return (
-    <>
+    <div className="user-layout-container">
       <ModalProvider>
-        {isLoaded && (
+        {isUserLoaded && (
           <>
             <UserNavigation />
-            <Outlet />
+            <div className="user-layout-outlet">
+              <Outlet />
+            </div>
           </>
         )}
         <Modal />
       </ModalProvider>
-    </>
+    </div>
   );
 }

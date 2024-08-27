@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -28,9 +28,15 @@ function LoginFormModal() {
       setErrors(serverResponse);
     } else {
       closeModal();
-      navigate(`/${user.id}/today`)
     }
   };
+
+  // Redirect after logged in
+  useEffect(() => {
+    if (user) {
+      navigate(`/${user.id}/today`);
+    }
+  }, [user, navigate]);
 
   return (
     <>

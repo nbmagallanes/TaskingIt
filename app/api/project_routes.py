@@ -5,10 +5,13 @@ from app.forms import ProjectForm
 
 project_routes = Blueprint('projects', __name__)
 
-@project_routes.route('/current')
+@project_routes.route('/user/<int:user_id>')
 @login_required
-def get_projects_by_user():
-    projects = Project.query.filter_by(user_id=current_user.id).all()
+def get_projects_by_user(user_id):
+    if current_user.id != user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    projects = Project.query.filter_by(user_id=user_id).all()
 
     if not projects:
         return jsonify({'error': 'No projects found'}), 404
