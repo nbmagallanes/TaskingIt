@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Project, db
-from app.forms import ProjectForm
+from app.models import Project, Section, db
+from app.forms import ProjectForm, SectionForm
 
 project_routes = Blueprint('projects', __name__)
 
@@ -25,6 +25,9 @@ def get_projects_by_id(project_id):
 
     if not project:
         return jsonify({'error': 'No project found'}), 404
+    
+    if current_user.id != project.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
     
     return jsonify(project.to_dict())
 
@@ -95,4 +98,94 @@ def delete_project(project_id):
     return jsonify({"message": "Project successfully deleted"}), 200
 
 
+# Section Routes
 
+@project_routes.route('/<int:project_id>/sections', methods=["GET"])
+@login_required
+def get_sections_by_project(project_id):
+
+    sections = Section.query.filter_by(project_id=project_id).all()
+
+    if not sections:
+        return jsonify({'error': 'Sections not found'}), 404
+
+    project = Project.query.get(project_id)
+
+    if current_user.id != project.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    return jsonify([section.to_dict() for section in sections]), 200
+
+@project_routes.route('/<int:project_id>/sections/new', methods=["POST"])
+@login_required
+def post_section(project_id):
+    form = SectionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    project = Project.query.get(project_id)
+
+    if not project:
+        return jsonify({'error': 'Project not found'}), 404
+    
+    if current_user.id != project.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+
+    if form.validate_on_submit():
+        new_section = Section(
+            user_id=current_user.id,
+            project_id=project_id,
+            name=form.data['name']
+        )
+
+        db.session.add(new_section)
+        db.session.commit()
+
+        return jsonify(new_section.to_dict()), 200
+    else:
+        errors = form.errors
+        return jsonify({'errors': errors}), 400
+    
+@project_routes.route('/<int:project_id>/sections/<int:section_id>', methods=["PUT"])
+@login_required
+def edit_section(project_id, section_id):
+    form = SectionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    section = Section.query.filter_by(id=section_id, project_id=project_id).one_or_none()
+
+    if not section:
+        return jsonify({'error': 'Section not found'}), 404
+    
+    if current_user.id != section.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    if form.validate_on_submit():
+        
+        section.name=form.data['name']
+        db.session.commit()
+
+        return jsonify(section.to_dict()), 200
+    else:
+        errors = form.errors
+        return jsonify({'errors': errors}), 400
+    
+@project_routes.route('/<int:project_id>/sections/<int:section_id>', methods=["DELETE"])
+@login_required
+def delete_section(project_id, section_id):
+    section = Section.query.filter_by(id=section_id, project_id=project_id).one_or_none()
+
+    if not section:
+        return jsonify({'error': 'Section not found'}), 404
+    
+    if current_user.id != section.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    db.session.delete(section)
+    db.session.commit()
+
+    return jsonify({"message": "Section successfully deleted"}), 200
+    
+
+
+    

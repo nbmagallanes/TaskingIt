@@ -16,21 +16,11 @@ def seed_tasks():
     task3 = Task(
         user_id=1, project_id=4, section_id=2, title='Clean Kitchen', due_date=date(2024,8,24), 
         due_time=time(23, 0), duration=timedelta(minutes=30), repeat=True, repeat_type='daily')
-    # Subtask for Task3
-    task4 = Task(
-        user_id=1, project_id=4, section_id=2, parent_task_id=3, title='Scrub down sink')
-    task5 = Task(
-        user_id=1, project_id=4, section_id=2, parent_task_id=3, title='Take trash out')
 
     db.session.add(task1)
     db.session.add(task2)
     db.session.add(task3)
-    db.session.add(task4)
-    db.session.add(task5)
-    # db.session.add(task6)
-    # db.session.add(task7)
-    # db.session.add(task8)
-    # db.session.add(task9)
+   
     db.session.commit()
 
 

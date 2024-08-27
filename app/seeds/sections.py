@@ -5,27 +5,27 @@ from sqlalchemy.sql import text
 def seed_sections():
     # Sections for User: 1, Project: Home
     section1 = Section(
-        project_id=4, name='Routines')
+        user_id=1, project_id=4, name='Routines')
     section2 = Section(
-        project_id=4, name='Cleaning')
+        user_id=1, project_id=4, name='Cleaning')
     section3 = Section(
-        project_id=4, name='Self Care')
+        user_id=1, project_id=4, name='Self Care')
     
     # Sections for User: 1, Project: Weekly Meals
     section4 = Section(
-        project_id=5, name='Day 1',)
+        user_id=1, project_id=5, name='Day 1',)
     section5 = Section(
-        project_id=5, name='Day 2',)
+        user_id=1, project_id=5, name='Day 2',)
     section6 = Section(
-        project_id=5, name='Day 3',)
+        user_id=1, project_id=5, name='Day 3',)
     
     # Sections for User: 3, Project: Workout Plan
     section7 = Section(
-        project_id=7, name='Monday - Glutes')
+        user_id=3, project_id=7, name='Monday - Glutes')
     section8 = Section(
-        project_id=7, name='Tuesday - Back and Bicepts')
+        user_id=3, project_id=7, name='Tuesday - Back and Bicepts')
     section9 = Section(
-        project_id=7, name='Wednesday - Rest Day')
+        user_id=3, project_id=7, name='Wednesday - Rest Day')
 
     db.session.add(section1)
     db.session.add(section2)

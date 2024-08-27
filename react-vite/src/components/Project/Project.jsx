@@ -17,6 +17,12 @@ export default function Project() {
         <div className='project-container'>
             <h1>{project.name}</h1>
             <h3>{project.description}</h3>
+            <div>
+                Container for tasks without section
+            </div>
+            <div className='project-section-container'>
+                Container for sections and tasks
+            </div>
         </div>
     )
 }

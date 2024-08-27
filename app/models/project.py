@@ -9,7 +9,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(200))
     color = db.Column(db.String(50), nullable=False)
 
     user = db.relationship('User', back_populates='projects')
@@ -17,11 +17,14 @@ class Project(db.Model):
     sections = db.relationship('Section', back_populates='project', cascade='all, delete')
 
     def to_dict(self):
+        # unsectioned_tasks = [task.to_dict() for task in self.tasks if not task.section_id]
+
         return {
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
             'description': self.description,
             'color': self.color,
-            # 'sections': [section.to_dict() for section in self.sections]
+            # 'sections': [section.to_dict() for section in self.sections],
+            # 'unsectioned_tasks': unsectioned_tasks
         }
