@@ -99,8 +99,6 @@ export const removeProject = (projectId) => async (dispatch) => {
         method: "DELETE",
     });
 
-    console.log('respojse from delete thnk', response)
-
     if (response.ok) {
         dispatch(deleteProject(projectId));
     } else {

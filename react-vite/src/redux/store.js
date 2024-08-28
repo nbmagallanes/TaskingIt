@@ -7,10 +7,12 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import projectsReducer from "./project";
+import sectionsReducer from "./section";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  projectState: projectsReducer
+  projectState: projectsReducer,
+  sectionState: sectionsReducer
 });
 
 let enhancer;

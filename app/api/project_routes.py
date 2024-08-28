@@ -104,17 +104,32 @@ def delete_project(project_id):
 @login_required
 def get_sections_by_project(project_id):
 
-    sections = Section.query.filter_by(project_id=project_id).all()
-
-    if not sections:
-        return jsonify({'error': 'Sections not found'}), 404
-
     project = Project.query.get(project_id)
 
     if current_user.id != project.user_id:
         return jsonify({'error': 'Unauthorized'}), 403
     
+    sections = Section.query.filter_by(project_id=project_id).all()
+
+    if not sections:
+        return jsonify([]), 200
+
+    
     return jsonify([section.to_dict() for section in sections]), 200
+
+@project_routes.route('/<int:project_id>/sections/<int:section_id>', methods=["GET"])
+@login_required
+def get_section_by_id(project_id, section_id):
+
+    section = Section.query.filter_by(id=section_id, project_id=project_id).one_or_none()
+
+    if not section:
+        return jsonify({'error': 'Section not found'}), 404
+
+    if current_user.id != section.user_id:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+    return jsonify(section.to_dict()), 200
 
 @project_routes.route('/<int:project_id>/sections/new', methods=["POST"])
 @login_required
@@ -162,6 +177,7 @@ def edit_section(project_id, section_id):
 
     if form.validate_on_submit():
         
+        section.project_id=form.data['project_id']
         section.name=form.data['name']
         db.session.commit()
 
