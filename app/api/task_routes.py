@@ -3,11 +3,10 @@ from flask_login import login_required, current_user
 from app.models import Project, Task, db
 from app.forms import TaskForm
 from .project_routes import project_routes
-from datetime import date, time
 
 task_routes = Blueprint('tasks', __name__)
 
-@project_routes.route('/<int:project_id>/tasks')
+@project_routes.route('/<int:project_id>/tasks', methods=["GET"])
 @login_required
 def get_tasks_by_project(project_id):
     project = Project.query.get(project_id)
@@ -23,7 +22,7 @@ def get_tasks_by_project(project_id):
     return jsonify([task.to_dict() for task in tasks])
 
 
-@task_routes.route('/current')
+@task_routes.route('/current', methods=["GET"])
 @login_required
 def get_tasks_by_user():
     tasks = Task.query.filter_by(user_id=current_user.id).all()
@@ -32,6 +31,20 @@ def get_tasks_by_user():
         return jsonify([])
     
     return jsonify([task.to_dict() for task in tasks])
+
+
+@task_routes.route('/<int:task_id>', methods=["GET"])
+@login_required
+def get_task(task_id):
+    task = Task.query.get(task_id)
+    
+    if not task:
+        return jsonify({"error": "Task not found"}), 404
+    
+    if task.user_id != current_user.id:
+            return jsonify({"error": "Unauthorized"}), 403
+    
+    return jsonify(task.to_dict())
 
 @task_routes.route('/new', methods=["POST"])
 @login_required
@@ -49,13 +62,13 @@ def post_task():
             project_id=form.data['project_id'],
             section_id=form.data['section_id'],
             title=form.data['title'],
-            description=form.data['description'],
+            description=form.data['description'] if form.data['description'] else None,
             priority=form.data['priority'],
             due_date=form.data['due_date'],
             due_time=form.data['due_time'],
             duration=duration if form.data['duration'] else None,
             repeat=form.data['repeat'],
-            repeat_type=form.data['repeat_type'],
+            repeat_type=form.data['repeat_type'] if form.data['repeat_type'] else None,
             repeat_start=form.data['repeat_start'],
             repeat_end=form.data['repeat_end']
         )

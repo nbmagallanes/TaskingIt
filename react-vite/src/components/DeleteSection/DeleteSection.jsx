@@ -16,10 +16,6 @@ export default function DeleteSection({sectionId}) {
         await dispatch(removeSection({projectId, sectionId}))
     }
 
-    // useEffect(() => {
-    //     dispatch(getSection({projectId, sectionId}))
-    // }, [dispatch, projectId, sectionId])
-
     return (
         <div>
             <h1> Delete section </h1>

@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import projectsReducer from "./project";
 import sectionsReducer from "./section";
+import tasksReducer from "./task";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   projectState: projectsReducer,
-  sectionState: sectionsReducer
+  sectionState: sectionsReducer,
+  taskState: tasksReducer
 });
 
 let enhancer;

@@ -25,6 +25,7 @@ class Project(db.Model):
             'name': self.name,
             'description': self.description,
             'color': self.color,
+            'sections': [section.custom_to_dict() for section in self.sections]
             # 'sections': [section.to_dict() for section in self.sections],
             # 'unsectioned_tasks': unsectioned_tasks
         }
