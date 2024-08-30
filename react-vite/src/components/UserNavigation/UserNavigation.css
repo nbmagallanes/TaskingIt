@@ -1,17 +1,62 @@
 .usernav-container {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     width: 260px;
     height: auto;
     background-color: rgb(242, 242, 242);
+    gap: 15px
 }
 
-.usernav-tab {
+.profile-dropdown-container {
     display: flex;
-    margin: 12px 0px;
-    padding: 4px;
-    height: 27px;
+    flex: 1;
+    padding: 3px 5px;
+    height: 34px;
     align-items: center;
+    gap: 10px;
+    margin: 6px 0px;
 }
+
+.profile-dropdown-container > button {
+    background-color: #7B66A7;
+    /* position: relative; */
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    left: 10px;
+    top: 60px;
+    padding: 0px 15px;
+    background-color: white;
+    list-style-type: none;
+    min-width: 250px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px 5px lightgray;
+  }
+
+  .profile-dropdown > li {
+    margin: 20px 0px
+  }
+
+.usernav-tab, .usernav-tab-project {
+    display: flex;
+    flex: 1;
+    /* margin: 5px 0px; */
+    padding: 3px 10px;
+    height: 30px;
+    align-items: center;
+    text-decoration: none;
+    color: #202020;
+    font-size: 14px;
+    font-weight: 400;
+    gap: 8px
+}
+
 .my-projects-container, .single-project-container {
     display: flex;
     justify-content: space-between;
@@ -22,11 +67,30 @@
     border-radius: 3px;
 }
 
-.my-projects {
-    flex: 1
+.usernav-tab.add-task > button{
+    border: none;
+    background-color: transparent;
+    flex: 1;
 }
 
-.usernav-add-project {
+.my-projects {
+    flex: 1;
+    text-decoration: none;
+    color: #202020;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.usernav-tab-project {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    flex: 1;
+    /* gap: 8px; */
+}
+
+.usernav-add-project,
+.project-options-button {
     border: none;
     font-size: 25px;
     width: 25px;
@@ -36,8 +100,9 @@
 }
 
 .my-projects-container:hover .usernav-add-project,
-.single-project-container:hover .usernav-add-project {
-    visibility: visible
+.single-project-container:hover .project-options-button {
+    visibility: visible;
+    cursor: pointer;
 }
 
 .usernav-add-project:hover {
@@ -61,7 +126,7 @@
     bottom: 100%;
     left: 50%;
     margin-left: -60px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .usernav-project-list {
@@ -75,4 +140,25 @@
 
 .tooltip-list .tooltiptext-list {
     width: 150px;
+}
+
+.project-options-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 30px;
+    top: -5px;
+    background-color: white;
+    width: 200px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px 5px lightgray;
+}
+
+.project-options-dropdown > button {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 0px 15px;
+    color: #202020;
+    background-color: transparent;
+    font-size: 13px;
 }

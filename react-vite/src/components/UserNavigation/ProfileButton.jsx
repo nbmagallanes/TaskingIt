@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
+// import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
 
@@ -42,8 +42,10 @@ function ProfileButton() {
   return (
     <>
       <button onClick={toggleMenu}>
-        <FaUserCircle /> Nicole
+        {/* <FaUserCircle style={{fontSize: "30px"}}/> */}
+        <p style={{color:"white", fontSize:'16px'}}>U</p>
       </button>
+      <h3 style={{fontSize:'16px', fontWeight: '600'}}>User</h3>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
