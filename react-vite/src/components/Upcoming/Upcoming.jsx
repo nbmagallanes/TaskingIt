@@ -70,7 +70,7 @@ export default function Upcoming() {
             <div className='upcoming-bottom-container'>
                 {upcomingData && ( upcomingData.map(data => (
                     <div key={data.id} className='upcoming-date-task-container'>
-                        <p>{`${data.displayDate[1]} • ${data.displayDate[0]}`}</p>
+                        <p>{`${data.displayDate[1]} • ${data.id === 0 ? 'Today' : (data.id === 1 ? 'Tomorrow' : data.displayDate[0])}`}</p>
                         <div className='upcoming-tasks-container'>
                             {data.tasks ? (
                                 data.tasks.map( task => (

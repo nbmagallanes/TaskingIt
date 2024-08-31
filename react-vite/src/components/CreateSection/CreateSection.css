@@ -1,1 +1,8 @@
+.create-section-errors-container {
+    height: 15px;
+}
 
+.create-section-errors {
+    color: red;
+    font-size: 14px;
+}

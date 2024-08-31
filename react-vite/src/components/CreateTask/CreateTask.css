@@ -1,0 +1,8 @@
+.create-task-errors {
+    color: red;
+    font-size: 14px;
+}
+
+.create-task-errors-container {
+    height: 15px
+}

@@ -9,12 +9,14 @@ export default function EditProjectModal({projectId}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState('Grey');
-    // const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true);
 
         const editedProject = {
             name,
@@ -23,9 +25,14 @@ export default function EditProjectModal({projectId}) {
         }
 
         const response = await dispatch(editProject({editedProject, projectId}))
+        console.log('this is the response', response)
 
-        if (response) {
+        if (response && !response.errors) {
             closeModal();
+        }
+
+        if (response && response.errors) {
+            setErrors(response.errors)
         }
     }
 
@@ -48,12 +55,18 @@ export default function EditProjectModal({projectId}) {
                     value={name} 
                     onChange={(e) => {setName(e.target.value)}} 
                 />
+                <div className='edit-project-errors-container'>
+                    <p className="edit-project-errors">{submitted && errors.name}</p>
+                </div>
                 <p>Description</p>
                 <input id='description' 
                     type='text' 
                     value={description} 
                     onChange={(e) => {setDescription(e.target.value)}} 
                 />
+                <div className='edit-project-errors-container'>
+                    <p className="edit-project-errors">{submitted && errors.description}</p>
+                </div>
                 <p>Color</p>
                 <select name='Color' value={color} onChange={(e) => {setColor(e.target.value)}} >
                     <option value='Grey'>Grey</option>

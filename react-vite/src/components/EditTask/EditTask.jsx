@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import { useParams } from "react-router-dom";
 import { editTask } from "../../redux/task";
+import './EditTask.css'
 
 export default function EditTask({taskId}) {
     const projectsObj = useSelector(state => state.projectState.projects)
@@ -33,7 +34,9 @@ export default function EditTask({taskId}) {
     const [duration, setDuration] = useState(task.duration || '');
     const [repeatType, setRepeatType] = useState(task.repeat_type || '')
     const [repeatStart, setRepeatStart] = useState(task.repeat_start || '');
-    const [repeatEnd, setRepeatEnd] = useState(task.reapeat_end || '');
+    const [repeatEnd, setRepeatEnd] = useState(task.repeat_end || '');
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleProjectSectionChange = (e) => {
         const [selectedProjectId, selectedSectionId] = e.target.value.split('-');
@@ -43,6 +46,7 @@ export default function EditTask({taskId}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true);
 
         const editedTask = {
             project_id: newProjectId,
@@ -50,18 +54,18 @@ export default function EditTask({taskId}) {
             title,
             description: description,
             priority: +priority,
-            due_date: dueDate,
+            due_date: repeatType ? '' : dueDate,
             due_time: dueTime,
-            duration,
+            duration: dueTime ? duration : '',
             repeat: repeatType ? true : false,
             repeat_type: repeatType,
-            repeat_start: repeatStart,
-            repeat_end: repeatEnd
+            repeat_start: repeatType ? repeatStart : '',
+            repeat_end: repeatType ? repeatEnd : ''
         }
 
         const response = await dispatch(editTask({editedTask, taskId}))
 
-        if (response) {
+        if (response && !response.errors) {
             setNewProjectId(projectId);
             setNewSectionId('');
             setTitle('')
@@ -75,6 +79,10 @@ export default function EditTask({taskId}) {
             setRepeatStart('');
             setRepeatEnd('');
         }
+
+        if (response && response.errors) {
+            setErrors(response.errors)
+        }
     }
 
     return (
@@ -87,13 +95,19 @@ export default function EditTask({taskId}) {
                 placeholder="Title"
                 onChange={(e) => {setTitle(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.title}</p>
+                </div>
                 <p>Description</p>
-                <input id='description'
+                <textarea id='description'
                 type='text'
                 value={description}
                 placeholder="Description"
                 onChange={(e) => {setDescription(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.description}</p>
+                </div>
                 <p>Project</p>
                 <select 
                     name='projects' 
@@ -109,6 +123,9 @@ export default function EditTask({taskId}) {
                         </Fragment>
                     ))}
                 </select>
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.project}</p>
+                </div>
                 <p>Priority</p>
                 <select name='priority' value={priority} onChange={(e) => {setPriority(e.target.value)}}>
                     <option value='1'>1</option>
@@ -116,43 +133,68 @@ export default function EditTask({taskId}) {
                     <option value='3'>3</option>
                     <option value='4'>4</option>
                 </select>
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.priority}</p>
+                </div>
                 <p>Due Date</p>
                 <input id='dueDate'
                 type='date'
-                value={dueDate}
+                value={repeatType ? '' : dueDate}
+                disabled={repeatType ? true : false}
                 onChange={(e) => {setDueDate(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.dueDate}</p>
+                </div>
                 <p>Due Time</p>
                 <input id='dueTime'
                 type='time'
                 value={dueTime}
                 onChange={(e) => {setDueTime(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.dueTime}</p>
+                </div>
                 <p>Duration</p>
                 <input id='duration'
                 type='text'
-                value={duration}
+                value={dueTime ? duration : ''}
                 placeholder="HH:MM"
+                disabled={dueTime ? false : true}
                 onChange={(e) => {setDuration(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.duration}</p>
+                </div>
                 <p>Repeat</p>
                 <select name='repeatType' value={repeatType} onChange={(e) => {setRepeatType(e.target.value)}}>
-                    <option value='' disabled>None</option>
+                    <option value=''>None</option>
                     <option value='Daily'>Daily</option>
                     <option value='Weekly'>Weekly</option>
                 </select>
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.repeatType}</p>
+                </div>
                 <p>From</p>
                 <input id='repeatStart'
                 type='date'
-                value={repeatStart}
+                value={repeatType ? repeatStart : ''}
+                disabled={repeatType ? false : true}
                 onChange={(e) => {setRepeatStart(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.repeatStart}</p>
+                </div>
                 <p>To</p>
                 <input id='repeatEnd'
                 type='date'
-                value={repeatEnd}
+                value={repeatType ? repeatEnd : ''}
+                disabled={repeatType ? false : true}
                 onChange={(e) => {setRepeatEnd(e.target.value)}}
                 />
+                <div className='edit-task-errors-container'>
+                    <p className="edit-task-errors">{submitted && errors.repeatEnd}</p>
+                </div>
                 <button type='button' onClick={() => closeModal()}>Cancel</button>
                 <button type='submit'>Save Task</button>    
             </form>

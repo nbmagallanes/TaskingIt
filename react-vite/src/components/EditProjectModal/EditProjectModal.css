@@ -1,0 +1,8 @@
+.edit-project-errors-container {
+    height: 15px;
+}
+
+.edit-project-errors {
+    color: red;
+    font-size: 14px;
+}

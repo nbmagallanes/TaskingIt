@@ -1,0 +1,8 @@
+.create-project-errors {
+    color: red;
+    font-size: 14px;
+}
+
+.create-project-errors-container {
+    height: 15px
+}

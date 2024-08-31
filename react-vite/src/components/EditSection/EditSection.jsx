@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { editSection } from "../../redux/section"
 import { useParams } from "react-router-dom"
 import { useModal } from "../../context/Modal"
+import './EditSection.css'
 
 export default function EditSection({sectionId}) {
     const projectsObj = useSelector((state) => state.projectState.projects)
@@ -14,9 +15,12 @@ export default function EditSection({sectionId}) {
 
     const [name, setName] = useState(section.name || '')
     const [newProject, setNewProject] = useState(projectId)
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setSubmitted(true);
 
         const editedSection = {
             project_id: newProject,
@@ -25,8 +29,12 @@ export default function EditSection({sectionId}) {
 
         const response = await dispatch(editSection({editedSection, projectId, sectionId}))
 
-        if (response) {
+        if (response && !response.errors) {
             closeModal();
+        }
+
+        if (response && response.errors) {
+            setErrors(response.errors)
         }
     }
 
@@ -45,6 +53,9 @@ export default function EditSection({sectionId}) {
                     placeholder="Name this section"
                     onChange={(e) => {setName(e.target.value)}} 
                 />
+                <div className="edit-section-errors-container">
+                    <p className="edit-section-errors">{submitted && errors.name}</p>
+                </div>
                 <p>Project</p>
                 <select name='Project' value={newProject} onChange={(e) => {setNewProject(e.target.value)}} >
                     {projects.map(project => (

@@ -1,0 +1,8 @@
+.edit-section-errors-container {
+    height: 15px;
+}
+
+.edit-section-errors {
+    color: red;
+    font-size: 14px;
+}

@@ -9,7 +9,8 @@ export default function CreateProjectModal() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState('Grey');
-    // const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const { closeModal } = useModal();
 
@@ -17,6 +18,7 @@ export default function CreateProjectModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true);
 
         const newProject = {
             name,
@@ -25,17 +27,19 @@ export default function CreateProjectModal() {
         }
 
         const response = await dispatch(addProject(newProject))
-        console.log(response)
 
-        if (response) {
+        if (response && !response.errors) {
             setName('');
             setDescription('');
             setColor('');
             closeModal();
             navigate(`/${response.user_id}/projects/${response.id}`)
         }
-    }
 
+        if (response && response.errors) {
+            setErrors(response.errors)
+        }
+    }
 
     return (
         <div>
@@ -47,12 +51,18 @@ export default function CreateProjectModal() {
                     value={name} 
                     onChange={(e) => {setName(e.target.value)}} 
                 />
+                <div className='create-project-errors-container'>
+                    <p className="create-project-errors">{submitted && errors.name}</p>
+                </div>
                 <p>Description</p>
                 <input id='description' 
                     type='text' 
                     value={description} 
                     onChange={(e) => {setDescription(e.target.value)}} 
                 />
+                <div className='create-project-errors-container'>
+                    <p className="create-project-errors">{submitted && errors.description}</p>
+                </div>
                 <p>Color</p>
                 <select name='Color' value={color} onChange={(e) => {setColor(e.target.value)}} >
                     <option value='Grey'>Grey</option>
