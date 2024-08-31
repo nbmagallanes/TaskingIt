@@ -1,12 +1,13 @@
 .user-layout-container {
-    display: flex;
-    height: 100%;
-  }
-  
-  .user-layout-outlet {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    /* padding: 20px; */
-  }
-  
+  display: flex;
+}
+
+.user-layout-outlet {
+  display: flex;
+  /* flex-direction: column; */
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: 100vh;
+}

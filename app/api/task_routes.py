@@ -103,13 +103,13 @@ def edit_task(task_id):
         task.project_id=form.data['project_id']
         task.section_id=form.data['section_id']
         task.title=form.data['title']
-        task.description=form.data['description']
+        task.description=form.data['description'] if form.data['description'] else None
         task.priority=form.data['priority']
         task.due_date=form.data['due_date']
         task.due_time=form.data['due_time']
         task.duration=duration if form.data['duration'] else None
         task.repeat=form.data['repeat']
-        task.repeat_type=form.data['repeat_type']
+        task.repeat_type=form.data['repeat_type'] if form.data['repeat_type'] else None
         task.repeat_start=form.data['repeat_start']
         task.repeat_end=form.data['repeat_end']
 

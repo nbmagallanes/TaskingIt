@@ -1,7 +1,10 @@
 .today-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 50px 55px 80px 55px;
+    max-width: 800px;
+    flex: 1
 }
 
 .today-title {

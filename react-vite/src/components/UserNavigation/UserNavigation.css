@@ -3,9 +3,13 @@
     flex-direction: column;
     padding: 10px;
     width: 260px;
-    height: auto;
+    min-width: 260px;
+    height: 100vh;
+    position: sticky;
+    /* top: 0;  */
     background-color: rgba(164, 146, 204, 0.108);
-    gap: 15px
+    gap: 15px;
+    /* overflow-y: auto; */
 }
 
 .profile-dropdown-container {

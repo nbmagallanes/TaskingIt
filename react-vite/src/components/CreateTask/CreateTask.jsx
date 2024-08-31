@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import { addTask } from "../../redux/task";
 // import React from "react";
 
-export default function CreateTask({sectionId}) {
+export default function CreateTask({sectionId, date}) {
+    console.log(sectionId, date)
     const projectsObj = useSelector(state => state.projectState.projects)
     const projects = Object.values(projectsObj)
     const { projectId } = useParams();
@@ -17,7 +18,7 @@ export default function CreateTask({sectionId}) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState('4');
-    const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState(date || '');
     const [dueTime, setDueTime] = useState('');
     const [duration, setDuration] = useState('');
     const [repeatType, setRepeatType] = useState('')

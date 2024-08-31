@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserTasks } from "../../redux/task";
 import OpenModalButton from "../OpenModalButton";
 import EditTask from "../EditTask/EditTask";
+import CreateTask from "../CreateTask/CreateTask";
 import DeleteTask from "../DeleteTask/DeleteTask"
 import { FiEdit3, FiTrash } from "react-icons/fi";
 import './TodayPage.css'
@@ -72,7 +73,10 @@ export default function TodayPage() {
               </div>
             </div>
           ))}
-
+          <OpenModalButton
+              buttonText= 'Add Task'
+              modalComponent={<CreateTask date={formatedToday}/>}
+          />
         </div>
       ) : null}
     </div>
