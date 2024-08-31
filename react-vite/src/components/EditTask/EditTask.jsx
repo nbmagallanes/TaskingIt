@@ -23,7 +23,7 @@ export default function EditTask({taskId}) {
 
     const convertedDueTime = task.due_time ? convertTime(task.due_time) : ''
     
-    const [newProjectId, setNewProjectId] = useState(projectId)
+    const [newProjectId, setNewProjectId] = useState(task.project_id || '')
     const [newSectionId, setNewSectionId] = useState(task.section_id || '')
     const [title, setTitle] = useState(task.title || '');
     const [description, setDescription] = useState(task.description || '');

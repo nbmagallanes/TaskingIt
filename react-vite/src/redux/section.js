@@ -1,3 +1,5 @@
+import { getUserProjects } from "./project"
+
 const LOAD_PROJECT_SECTIONS = 'section/getProjectSections'
 const LOAD_SECTION = 'section/getSection'
 const CREATE_SECTION = 'section/createSection'
@@ -89,8 +91,11 @@ export const editSection = ({editedSection, projectId, sectionId}) => async (dis
         await dispatch(updateSection(resSection))
         
         if (resSection.project_id !== projectId) {
-            dispatch(getProjectSections(projectId))
+            await dispatch(getProjectSections(projectId))
         }
+         // When sections is updated, 
+         // it updates the project state to fetch section names
+        dispatch(getUserProjects(resSection.user_id))
         
         return resSection
     } else {

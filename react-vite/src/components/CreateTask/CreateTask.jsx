@@ -12,7 +12,7 @@ export default function CreateTask({sectionId}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-    const [newProjectId, setNewProjectId] = useState(projectId)
+    const [newProjectId, setNewProjectId] = useState(projectId ? projectId : projects[0].id)
     const [newSectionId, setNewSectionId] = useState(sectionId || '')
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
