@@ -9,6 +9,8 @@ import OpenModalButton from '../OpenModalButton';
 import CreateSection from '../CreateSection/CreateSection';
 import { getProjectTasks } from '../../redux/task';
 import CreateTask from '../CreateTask/CreateTask';
+import EditTask from '../EditTask/EditTask'
+import DeleteTask from '../DeleteTask/DeleteTask'
 
 export default function Project() {
     const project = useSelector((state) => state.projectState.project)
@@ -34,10 +36,20 @@ export default function Project() {
                 modalComponent={<CreateSection projectId={projectId}/>}
             />
             {unsectionTasks ? (
-                <div>
+                <div className='project-unsectioned-task-container'>
                     {unsectionTasks.map(task => (
-                        <div key={task.id}>
+                        <div key={task.id} className='project-single-task'>
                             <p>{task.title}</p>
+                            <div>
+                                <OpenModalButton 
+                                    buttonText='Edit Task'
+                                    modalComponent={<EditTask taskId={task.id}/>}
+                                />
+                                <OpenModalButton 
+                                    buttonText='Delete Task'
+                                    modalComponent={<DeleteTask task={task}/>}
+                                />
+                            </div>
                         </div>
                     ))}
                     <OpenModalButton 
@@ -53,6 +65,10 @@ export default function Project() {
                     ))}
                 </div> 
             ) : null }
+            <OpenModalButton 
+                buttonText='Add Task'
+                modalComponent={<CreateTask />}
+            />
         </div>
     )
 }

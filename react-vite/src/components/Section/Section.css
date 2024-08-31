@@ -1,0 +1,8 @@
+.section-task-container {
+    margin-bottom: 20px;
+}
+
+.section-single-task {
+    display: flex;
+    justify-content: space-between;
+}

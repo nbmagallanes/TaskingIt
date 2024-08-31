@@ -29,24 +29,24 @@ export default function Section({section}) {
                 />
             </div>
             {tasks.length ? (
-                <div>
+                <div className='section-task-container'>
                     {tasks.map(task => (
-                        <div key={task.id}>
+                        <div key={task.id} className='section-single-task'>
                             <p>{task.title}</p>
-                            <OpenModalButton 
-                                buttonText='Edit Task'
-                                modalComponent={<EditTask taskId={task.id}/>}
-                            />
-                            <OpenModalButton 
-                                buttonText='Delete Task'
-                                modalComponent={<DeleteTask task={task}/>}
-                            />
+                            <div>
+                                <OpenModalButton 
+                                    buttonText='Edit Task'
+                                    modalComponent={<EditTask taskId={task.id}/>}
+                                />
+                                <OpenModalButton 
+                                    buttonText='Delete Task'
+                                    modalComponent={<DeleteTask task={task}/>}
+                                />
+                            </div>
                         </div>
                     ))}
-                    <button>Add Task</button>
                 </div>
             ): null }
-
         </div>
     )
 }

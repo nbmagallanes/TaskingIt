@@ -1,0 +1,8 @@
+.edit-task-errors {
+    color: red;
+    font-size: 14px;
+}
+
+.edit-task-errors-container {
+    height: 15px
+}
