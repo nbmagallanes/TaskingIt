@@ -58,7 +58,7 @@ export default function Upcoming() {
         if (!tasks.length) {
             dispatch(getUserTasks())
         }
-    }, [tasks])
+    }, [tasks.length])
 
     return (
         <div className='upcoming-page-container'>
