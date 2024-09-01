@@ -61,12 +61,20 @@ def sign_up():
 
         default_project = Project(
             user_id=user.id,
+            name='Inbox',
+            description='Default Project',
+            color='Grey'
+        )
+
+        home_project = Project(
+            user_id=user.id,
             name='Home 🏡',
             description='Welcome to TaskingIt!',
             color='Grey'
         )
 
         db.session.add(default_project)
+        db.session.add(home_project)
         db.session.commit()
 
         login_user(user)

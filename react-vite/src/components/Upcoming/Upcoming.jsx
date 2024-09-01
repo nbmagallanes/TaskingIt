@@ -41,7 +41,6 @@ export default function Upcoming() {
             })) : []
         })
     }
-    console.log(upcomingData)
 
     const getTaskProject = (projectId, sectionId) => {
         if (projectId && sectionId) {
