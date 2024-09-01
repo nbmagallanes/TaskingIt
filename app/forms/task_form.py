@@ -14,8 +14,11 @@ def validate_duration(form, field):
     if not (0 <= hours <= 23) or not (0 <= minutes <= 59):
         raise ValidationError('Invalid time format')
     
-    if not form.due_time.data or not form.due_date.data:
+    if not form.repeat.data and (not form.due_time.data or not form.due_date.data):
         raise ValidationError('Duration invalid. Due time and due date must be set')
+    
+    if form.repeat.data and not form.due_time.data:
+        raise ValidationError('Duration invalid. Due time must be set')
     
 
 class TaskForm(FlaskForm):

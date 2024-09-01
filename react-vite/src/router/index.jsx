@@ -8,6 +8,7 @@ import Inbox from '../components/Inbox/Inbox'
 import Upcoming from '../components/Upcoming';
 import MyProjects from '../components/MyProjects';
 import Project from '../components/Project'
+import Navigation from "../components/Navigation/Navigation";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <> <Navigation /> <h1>Welcome!</h1> </>,
       },
       {
         path: "login",
