@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
+import checklistImage from '../../../images/checklist.jpg';
 import './SignupForm.css'
 
 function SignupFormPage() {
@@ -202,7 +203,7 @@ function SignupFormPage() {
             </form>
           </div>
           <div className="signup-image-container">
-            <img src="../../../images/checklist.jpg" className="signup-image"/>
+            <img src={checklistImage} className="signup-image"/>
           </div>
         </div>
       </div>

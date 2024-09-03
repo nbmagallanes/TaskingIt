@@ -49,7 +49,7 @@ export default function Project() {
                 modalComponent={<CreateTask/>}
                 className='add-task-button'
             />
-            <div className='project-add-section-disabled'></div>
+            {sections.length ? <div className='project-add-section-disabled'></div> : null}
             {sections.length ? (
                 <div className='project-section-container'>
                     {sections.map(section => (
@@ -81,7 +81,14 @@ export default function Project() {
                         </div>
                     ))}
                 </div> 
-            ) : null }
+            ) : (
+                <div className='project-add-section-active'>
+                    <OpenModalButton 
+                        buttonText='Add Section'
+                        modalComponent={<CreateSection projectId={projectId}/>}
+                    />
+                </div>
+            )}
         </div>
     )
 }

@@ -70,7 +70,7 @@
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    margin: 15px 0px;
+    margin: 10px 0px;
 }
 
 .project-add-section-active:hover {

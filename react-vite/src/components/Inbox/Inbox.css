@@ -1,0 +1,102 @@
+.project-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 55px 80px 55px;
+    max-width: 70%;
+    flex: 1;
+    /* overflow-y: auto; */
+}
+
+.project-page-title {
+    /* padding: 0px 2px; */
+    margin: 20px 0px 15px 0px;
+    font-size: 26px;
+}
+
+.project-unsectioned-task-container {
+    display: flex;
+    flex-direction: column;
+    /* margin: 10px 0px; */
+}
+
+.add-task-button,
+.unsectioned-add-task-button {
+    display: flex;
+    align-items: end;
+    background-color: transparent;
+    border: none;
+    height: 33px;
+    padding: 0px 8px 8px 9px;
+    box-sizing: border-box;
+    width: 100%
+
+}
+
+.add-task-button-span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: gray;
+    font-weight: 400;
+}
+
+.add-task-button-icon {
+    font-size: 18px ;
+    stroke-width: 1.5;
+    margin-right: 10px;
+    color: #7B66A7;
+}
+
+.add-task-button:hover .add-task-button-span {
+    color: #7B66A7;
+    font-weight: 400;
+}
+
+.add-task-button:hover .add-task-button-icon {
+    background-color: #7B66A7;
+    border-radius: 50%;
+    color: white;
+}
+
+.project-add-section-disabled {
+    height: 30px;
+}
+
+.project-add-section-active {
+    opacity: 0;
+    height: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.project-add-section-active:hover {
+    opacity: 1;
+}
+
+.project-add-section-active > button {
+    border: none;
+    background-color: transparent;
+    color: #7B66A7;
+    font-weight: 600;
+}
+
+.project-add-section-active::before,
+.project-add-section-active::after {
+    content: '';
+    flex-grow: 1;         
+    height: 1px;             
+    background-color: #7B66A7;   
+    margin: 0 10px;            
+}
+
+.line-button::before {
+    margin-right: 10px; 
+}
+
+.line-button::after {
+    margin-left: 10px;  
+}

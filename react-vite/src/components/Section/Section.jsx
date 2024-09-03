@@ -10,7 +10,6 @@ export default function Section({section, projectView, openMenu, setOpenMenu}) {
     const tasks = Object.values(tasksObj).filter(task => task.section_id === section.id)
    
     const handleOpenMenu = (sectionId) => {
-        console.log('inside handleee', sectionId, openMenu)
         setOpenMenu(openMenu === sectionId ? null : sectionId);
     };
 
