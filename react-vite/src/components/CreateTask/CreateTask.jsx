@@ -100,7 +100,7 @@ export default function CreateTask({sectionId, date}) {
         if (!title.length) newErrors.title = 'Title is required'
         else if (title.length < 2) newErrors.title = 'Title must be 2 characters or more'
         else if (title.length > 150) newErrors.title = 'Title must be 150 characters or less'
-        if ( description.length && description.length > 300) newErrors.description = 'Description must be 300 characters or less'
+        if (description.length && description.length > 300) newErrors.description = 'Description must be 300 characters or less'
         if (!validateDuration(duration)) newErrors.duration = 'Duration format must be in HH:MM'
         if (duration.length && !repeatType.length && (!dueDate || !dueTime)) newErrors.duration = 'Due time and due date must be set'
         if (duration.length && repeatType.length && !dueTime) newErrors.duration = 'Due time must be set'
