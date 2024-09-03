@@ -14,6 +14,11 @@
     font-size: 26px;
 }
 
+.project-page-description {
+    height: 30px;
+    font-size: 14px;
+}
+
 .project-unsectioned-task-container {
     display: flex;
     flex-direction: column;

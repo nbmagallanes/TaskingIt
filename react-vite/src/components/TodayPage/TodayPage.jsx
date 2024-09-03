@@ -4,6 +4,7 @@ import { getUserTasks } from "../../redux/task";
 import OpenModalButton from "../OpenModalButton";
 import CreateTask from "../CreateTask/CreateTask";
 import ListViewTask from "../ListViewTask/ListViewTask";
+import { FiPlus } from "react-icons/fi";
 import './TodayPage.css'
 
 
@@ -52,9 +53,15 @@ export default function TodayPage() {
           {sortedTasks.map(task => (
             <ListViewTask key={task.id} task={task} projectView={false}/>
           ))}
-          <OpenModalButton
-              buttonText= 'Add Task'
-              modalComponent={<CreateTask date={formatedToday}/>}
+          <OpenModalButton 
+            buttonText={
+                <span className='add-task-button-span'>
+                    <FiPlus className='add-task-button-icon' />
+                    Add Task
+                </span>
+            }
+            modalComponent={<CreateTask date={formatedToday}/>}
+            className='add-task-button'
           />
         </div>
       ) : null}
