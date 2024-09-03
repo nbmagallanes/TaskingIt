@@ -4,6 +4,7 @@ import { getUserTasks } from '../../redux/task'
 import './Upcoming.css'
 import CreateTask from '../CreateTask/CreateTask'
 import OpenModalButton from '../OpenModalButton'
+import { FiPlus } from "react-icons/fi";
 
 export default function Upcoming() {
     const tasksObj = useSelector(state => state.taskState.tasks)
@@ -99,10 +100,17 @@ export default function Upcoming() {
                                     </div>
                                 ))
                             ) : null }
-                            <OpenModalButton
-                                buttonText= 'Add Task'
+                            <OpenModalButton 
+                                buttonText={
+                                    <span className='add-task-button-span'>
+                                        <FiPlus className='add-task-button-icon' />
+                                        Add Task
+                                    </span>
+                                }
                                 modalComponent={<CreateTask date={data.formattedDate}/>}
+                                className='add-task-button'
                             />
+
                         </div>
                     </div>
                 )))}
