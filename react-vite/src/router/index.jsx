@@ -44,10 +44,10 @@ export const router = createBrowserRouter([
             path: "upcoming",
             element: <Upcoming />
           },
-          {
-            path: "projects",
-            element: <MyProjects />
-          },
+          // {
+          //   path: "projects",
+          //   element: <MyProjects />
+          // },
           {
             path: "projects/:projectId",
             element: <Project />
