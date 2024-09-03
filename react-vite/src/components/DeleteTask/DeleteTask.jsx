@@ -14,8 +14,10 @@ export default function DeleteTask({task}) {
     return (
         <div>
             <p>Are you sure you want to delete {task.title}?</p>
-            <button type='button' onClick={() => closeModal()}>Cancel</button>
-            <button type='submit' onClick={handleDeleteTask}>Delete</button>  
+            <div className="create-task-buttons">
+                <button type='button' onClick={() => closeModal()}>Cancel</button>
+                <button type='submit' onClick={handleDeleteTask}>Delete</button>  
+            </div>
         </div>
     )
 }
