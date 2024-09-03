@@ -1,8 +1,74 @@
-.section-task-container {
-    margin-bottom: 20px;
+.section-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(232, 232, 232);
 }
 
-.section-single-task {
+.section-title {
+    font-size: 14px;
+    padding: 6px 6px 5px 0px;
+}
+
+.section-options-button {
+    border: none;
+    font-size: 25px;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    visibility: hidden;
+}
+
+.section-container:hover .section-options-button {
+    visibility: visible;
+    cursor: pointer;
+}
+
+.section-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.section-tooltip .section-tooltiptext {
+    visibility: hidden;
+    width: 110px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 14px;
+}
+
+.section-tooltip:hover .section-tooltiptext {
+    visibility: visible;
+}
+
+.section-tooltip-list .section-tooltiptext-list {
+    width: 150px;
+}
+
+.section-options-dropdown {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    right: -50px;
+    top: 30px;
+    background-color: white;
+    width: 200px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px 5px lightgray;
+}
+
+.section-options-dropdown > button {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 0px 15px;
+    color: #202020;
+    background-color: transparent;
+    font-size: 13px;
 }

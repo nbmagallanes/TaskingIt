@@ -2,10 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTasks } from "../../redux/task";
 import OpenModalButton from "../OpenModalButton";
-import EditTask from "../EditTask/EditTask";
 import CreateTask from "../CreateTask/CreateTask";
-import DeleteTask from "../DeleteTask/DeleteTask"
-import { FiEdit3, FiTrash } from "react-icons/fi";
+import ListViewTask from "../ListViewTask/ListViewTask";
 import './TodayPage.css'
 
 
@@ -22,20 +20,24 @@ export default function TodayPage() {
 
   const tasksObj = useSelector(state => state.taskState.tasks)
   const tasks = Object.values(tasksObj).filter(task => task.due_date === formatedToday)
-  const projectsObj = useSelector(state => state.projectState.projects)
-  const projects = Object.values(projectsObj)
+
   const dispatch = useDispatch();
 
-  const getTaskProject = (projectId, sectionId) => {
-    if (projectId && sectionId) {
-      const project = projects.find(project => project.id === projectId)
-      const section = project?.sections.find(section => section.id === sectionId)
-      return `${project?.name} / ${section?.name} #`
-    } else {
-      const project = projects.find(project => project.id === projectId)
-      return `${project?.name} #`
-    }
+  const convertTime = (timeStr) => {
+    const [time, abbreviation] = timeStr.split(' ');
+    const [hours, minutes] = time.split(':')
+    
+    if (abbreviation == 'PM' && hours !== '12') return `${parseInt(hours) + 12}:${minutes}`
+    else if (abbreviation == 'AM' && hours == '12') return `00:${minutes}`
+    else return `${hours}:${minutes}`
   }
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+    const timeA = a.due_time ? new Date(`1970-01-01T${convertTime(a.due_time)}`).getTime() : new Date('1970-01-01T23:59:59').getTime();
+    const timeB = b.due_time ? new Date(`1970-01-01T${convertTime(b.due_time)}`).getTime() : new Date('1970-01-01T23:59:59').getTime();
+    
+    return timeA - timeB;
+  });
 
   useEffect(() => {
     dispatch(getUserTasks())
@@ -47,31 +49,8 @@ export default function TodayPage() {
       <h1 className="today-title">Today</h1>
       {tasks ? ( 
         <div className="today-tasks-container">
-          {tasks.map(task => (
-            <div key={task.id} className="today-task">
-              <div className="today-task-button-container">
-                <button className="today-task-button"></button>
-              </div>
-              <div className="today-task-info">
-                <div className="today-task-top">
-                  <p className="today-task-title" style={{fontSize:"14px", padding:"2px 0px"}}>{task.title}</p>
-                  <div className="today-task-option-buttons" style={{display: 'flex', gap:'5px'}}>
-                    <OpenModalButton
-                        buttonText={ <FiEdit3 style={{ padding: '2px 4px 0px 4px', strokeWidth: 1 }} /> }
-                        modalComponent={<EditTask taskId={task.id}/>}
-                    />
-                    <OpenModalButton
-                        buttonText={ <FiTrash style={{ padding: '2px 4px 0px 4px', strokeWidth: 1 }} /> }
-                        modalComponent={<DeleteTask task={task}/>}
-                    />
-                  </div>
-                </div>
-                <div className="today-task-info-bottom" style={task.due_time ? {justifyContent: 'space-between'} : {justifyContent: 'flex-end'}}>
-                  {task.due_time ? <p className="today-task-due-time">{task.due_time}</p> : null}
-                  <p className="today-task-project">{getTaskProject(task.project_id, task.section_id)}</p>
-                </div>
-              </div>
-            </div>
+          {sortedTasks.map(task => (
+            <ListViewTask key={task.id} task={task} projectView={false}/>
           ))}
           <OpenModalButton
               buttonText= 'Add Task'

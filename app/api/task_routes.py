@@ -26,7 +26,7 @@ def get_tasks_by_project(project_id):
 @login_required
 def get_tasks_by_user():
     tasks = Task.query.filter_by(user_id=current_user.id).all()
-    
+    # print('THIS IS TASK', str(tasks))
     if not tasks:
         return jsonify([])
     

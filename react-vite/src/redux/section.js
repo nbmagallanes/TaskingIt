@@ -1,4 +1,5 @@
 import { getUserProjects } from "./project"
+import { editTask } from '../redux/task'
 
 const LOAD_PROJECT_SECTIONS = 'section/getProjectSections'
 const LOAD_SECTION = 'section/getSection'
@@ -77,7 +78,7 @@ export const addSection = (section) => async (dispatch) => {
     }
 };
 
-export const editSection = ({editedSection, projectId, sectionId}) => async (dispatch) => {
+export const editSection = ({editedSection, projectId, sectionId}) => async (dispatch, getState) => {
     const response = await fetch(`/api/projects/${projectId}/sections/${sectionId}`, {
         method: 'PUT',
         headers: {
@@ -92,6 +93,31 @@ export const editSection = ({editedSection, projectId, sectionId}) => async (dis
         
         if (resSection.project_id !== projectId) {
             await dispatch(getProjectSections(projectId))
+
+            const state = getState()
+            const tasks = Object.values(state.taskState.tasks)
+
+            tasks.forEach( async (task) => {
+                const refactoredTask = Object.keys(task).reduce((acc, key) => {
+                    acc[key] = task[key] === null ? '' : task[key];
+
+                    if (key === 'due_time' && task[key]) {
+
+                        const [time, abbreviation] = task[key].split(' ');
+                        const [hours, minutes] = time.split(':')
+                        
+                        if (abbreviation == 'PM' && hours !== '12') acc[key] = `${parseInt(hours) + 12}:${minutes}`
+                        else if (abbreviation == 'AM' && hours == '12') acc[key] = `00:${minutes}`
+                        else acc[key] = `${hours}:${minutes}`
+                    }
+
+                    return acc
+                }, {})
+
+                const updatedTask = {...refactoredTask, project_id: resSection.project_id}
+                const taskRes = await dispatch(editTask({editedTask: updatedTask, taskId: parseInt(task.id)}))
+                if (!taskRes.ok) return taskRes
+            })
         }
          // When sections is updated, 
          // it updates the project state to fetch section names

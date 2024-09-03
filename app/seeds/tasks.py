@@ -14,16 +14,16 @@ def seed_tasks():
     
     # Tasks for User: 1, Project: Home, Section: Cleaning
     task3 = Task(
-        user_id=1, project_id=4, section_id=2, title='Clean Kitchen', due_date=date(2024,8,24), 
-        due_time=time(23, 0), duration=timedelta(hours=2, minutes=30), repeat=True, repeat_type='daily')
+        user_id=1, project_id=4, section_id=2, title='Clean Kitchen', 
+        due_time=time(23, 0), duration=timedelta(hours=2, minutes=30), repeat=True, repeat_type='Daily', repeat_start=date.today())
     
     task4 = Task(
-        user_id=1, project_id=4, section_id=2, title='Wash Dishes', due_date=date(2024,8,29), 
-        due_time=time(13, 0), duration=timedelta(hours=1, minutes=30), repeat=True, repeat_type='daily')
+        user_id=1, project_id=4, section_id=2, title='Wash Dishes', 
+        due_time=time(13, 0), duration=timedelta(hours=1, minutes=30), repeat=True, repeat_type='Daily', repeat_start=date.today())
     
     task5 = Task(
         user_id=1, project_id=4, section_id=2, title='Mop Floor', due_date=date(2024,8,29), 
-        due_time=time(15, 0), duration=timedelta(hours=1), repeat=True, repeat_type='daily')
+        due_time=time(15, 0), duration=timedelta(hours=1), repeat=False)
 
     db.session.add(task1)
     db.session.add(task2)

@@ -12,6 +12,22 @@ export default function Upcoming() {
     const projects = Object.values(projectsObj)
     const dispatch = useDispatch();
 
+    const convertTime = (timeStr) => {
+        const [time, abbreviation] = timeStr.split(' ');
+        const [hours, minutes] = time.split(':')
+        
+        if (abbreviation == 'PM' && hours !== '12') return `${parseInt(hours) + 12}:${minutes}`
+        else if (abbreviation == 'AM' && hours == '12') return `00:${minutes}`
+        else return `${hours}:${minutes}`
+    }
+
+    const sortedTasks = [...tasks].sort((a, b) => {
+        const timeA = a.due_time ? new Date(`1970-01-01T${convertTime(a.due_time)}`).getTime() : new Date('1970-01-01T23:59:59').getTime();
+        const timeB = b.due_time ? new Date(`1970-01-01T${convertTime(b.due_time)}`).getTime() : new Date('1970-01-01T23:59:59').getTime();
+    
+        return timeA - timeB;
+    });
+
     const newDateToday = new Date()
     const upcomingData = []
 
@@ -30,7 +46,7 @@ export default function Upcoming() {
                 weekday: 'long',
             }).format(date).split(', '),
             formattedDate: formatedDate,
-            tasks: tasks.length ? (tasks.filter(task => {
+            tasks: sortedTasks.length ? (sortedTasks.filter(task => {
                 // console.log(new Date(task.due_date), new Date(formatedDate), new Date(task.due_date) > new Date(formatedDate))
                 if (task.due_date === formatedDate || 
                     (task.repeat && task.repeat_end && task.repeat_start && (new Date(task.repeat_start) <= new Date(formatedDate)) && (new Date(task.repeat_end) >= new Date(formatedDate))) || 
@@ -54,10 +70,8 @@ export default function Upcoming() {
     }
 
     useEffect(() => {
-        if (!tasks.length) {
-            dispatch(getUserTasks())
-        }
-    }, [tasks.length])
+        dispatch(getUserTasks())
+    }, [dispatch])
 
     return (
         <div className='upcoming-page-container'>

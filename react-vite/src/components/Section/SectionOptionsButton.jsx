@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
-import EditProjectModal from "../EditProjectModal/EditProjectModal";
-import DeleteProject from "../DeleteProject/DeleteProject";
+import EditSection from "../EditSection/EditSection"
+import DeleteSection from "../DeleteSection/DeleteSection"
 import { FiEdit3 } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
+import { PiDotsThreeOutlineThin } from "react-icons/pi";
 
-function ProjectOptionsButton({projectId, isOpen, onToggleMenu}) {
-  // console.log('inside PROJECT optionssss', projectId, isOpen, onToggleMenu)
+function SectionOptionsButton({sectionId, isOpen, onToggleMenu}) {
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
 
@@ -15,23 +15,23 @@ function ProjectOptionsButton({projectId, isOpen, onToggleMenu}) {
     if (!isOpen) return;
     
     const closeMenu = (e) => {
-        if (ulRef.current && !ulRef.current.contains(e.target)) {
-            onToggleMenu();
-        }
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
+        onToggleMenu();
+      }
     };
     
     document.addEventListener("click", closeMenu);
     
     return () => document.removeEventListener("click", closeMenu);
-}, [isOpen, onToggleMenu]);
+  }, [isOpen, onToggleMenu]);
 
   return (
     <>
-      <button className='project-options-button' onClick={(e) => { e.stopPropagation(); onToggleMenu(); }}>
-        ...
+      <button className='section-options-button' onClick={(e) => { e.stopPropagation(); onToggleMenu(); }}>
+        <PiDotsThreeOutlineThin />
       </button>
       {isOpen && (
-        <div className={"project-options-dropdown"} ref={ulRef}>
+        <div className={"section-options-dropdown"} ref={ulRef}>
           {user ? (
             <>
               <OpenModalButton
@@ -41,7 +41,7 @@ function ProjectOptionsButton({projectId, isOpen, onToggleMenu}) {
                             Edit
                         </span>
                     }
-                    modalComponent={<EditProjectModal projectId={projectId}/>}
+                    modalComponent={<EditSection sectionId={sectionId}/>}
                     onButtonClick={onToggleMenu}
                 />
                 <OpenModalButton
@@ -51,7 +51,7 @@ function ProjectOptionsButton({projectId, isOpen, onToggleMenu}) {
                             Delete
                         </span>
                     }
-                    modalComponent={<DeleteProject projectId={projectId}/>}
+                    modalComponent={<DeleteSection sectionId={sectionId}/>}
                     onButtonClick={onToggleMenu}
                 />
             </>
@@ -63,4 +63,4 @@ function ProjectOptionsButton({projectId, isOpen, onToggleMenu}) {
   );
 }
 
-export default ProjectOptionsButton;
+export default SectionOptionsButton;

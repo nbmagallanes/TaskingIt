@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 class Task(db.Model):
     __tablename__ = 'tasks'
@@ -29,7 +29,8 @@ class Task(db.Model):
 
     def end_time(self):
         if self.due_time and self.duration:
-            end_time = (datetime.combine(self.due_date, self.due_time) + self.duration).time()
+            due_date = self.due_date if self.due_date else date.today()
+            end_time = (datetime.combine(due_date, self.due_time) + self.duration).time()
             return end_time
         return None
     

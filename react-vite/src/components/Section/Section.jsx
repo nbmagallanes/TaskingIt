@@ -1,49 +1,35 @@
 import { useSelector } from 'react-redux'
-import DeleteSection from '../DeleteSection/DeleteSection'
-import EditSection from '../EditSection/EditSection'
-import OpenModalButton from '../OpenModalButton'
-import CreateTask from '../CreateTask/CreateTask'
-import EditTask from '../EditTask/EditTask'
-import DeleteTask from '../DeleteTask/DeleteTask'
+// import { useState } from 'react'
+import ListViewTask from '../ListViewTask/ListViewTask'
+import SectionOptionsButton from "./SectionOptionsButton"
+
 import './Section.css'
 
-export default function Section({section}) {
+export default function Section({section, projectView, openMenu, setOpenMenu}) {
     const tasksObj = useSelector(state => state.taskState.tasks)
     const tasks = Object.values(tasksObj).filter(task => task.section_id === section.id)
    
+    const handleOpenMenu = (sectionId) => {
+        console.log('inside handleee', sectionId, openMenu)
+        setOpenMenu(openMenu === sectionId ? null : sectionId);
+    };
+
     return (
-        <div>
-            <div>
-                <h3>{section.name}</h3>
-                <OpenModalButton 
-                    buttonText='Delete Section'
-                    modalComponent={<DeleteSection sectionId={section.id}/>}
-                />
-                <OpenModalButton 
-                    buttonText='Edit Section'
-                    modalComponent={<EditSection sectionId={section.id}/>}
-                />
-                <OpenModalButton 
-                    buttonText='Add Task'
-                    modalComponent={<CreateTask sectionId={section.id}/>}
-                />
+        <div className='section-tasks-list-container'>
+            <div className='section-container'>
+                <h3 className="section-title">{section.name}</h3>
+                <div className="section-tooltip section-tooltip-list">
+                    <SectionOptionsButton sectionId={section.id} 
+                        isOpen={openMenu === section.id}
+                        onToggleMenu={() => handleOpenMenu(section.id)}
+                    />
+                    <p className="section-tooltiptext section-tooltiptext-list">More section actions</p>
+                </div>
             </div>
             {tasks.length ? (
-                <div className='section-task-container'>
+                <div className='section-tasks-container'>
                     {tasks.map(task => (
-                        <div key={task.id} className='section-single-task'>
-                            <p>{task.title}</p>
-                            <div>
-                                <OpenModalButton 
-                                    buttonText='Edit Task'
-                                    modalComponent={<EditTask taskId={task.id}/>}
-                                />
-                                <OpenModalButton 
-                                    buttonText='Delete Task'
-                                    modalComponent={<DeleteTask task={task}/>}
-                                />
-                            </div>
-                        </div>
+                        <ListViewTask key={task.id} task={task} projectView={projectView}/>
                     ))}
                 </div>
             ): null }

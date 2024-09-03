@@ -202,7 +202,7 @@ function SignupFormPage() {
             </form>
           </div>
           <div className="signup-image-container">
-            <img src="../../images/checklist.jpg" className="signup-image"/>
+            <img src="../../../images/checklist.jpg" className="signup-image"/>
           </div>
         </div>
       </div>

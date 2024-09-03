@@ -34,7 +34,14 @@
     min-width: 280px;
     width: 280px;
     padding: 0px 8px;
+    max-height: 65vh;
+    overflow-y: auto;
 }
+
+/* .upcoming-tasks-container {
+    max-height: 65vh;
+    overflow-y: auto;
+} */
 
 .upcoming-task {
     display: flex;
