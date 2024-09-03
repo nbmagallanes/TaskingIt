@@ -8,7 +8,8 @@ export default function DeleteSection({sectionId}) {
     const section = useSelector((state) => state.sectionState.sections[sectionId])
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const { projectId } = useParams();
+    const { urlProjectId } = useParams();
+    const projectId = urlProjectId ? urlProjectId : section.project_id
 
     const handleDeleteSection = async (e) => {
         e.preventDefault();

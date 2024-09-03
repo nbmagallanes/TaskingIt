@@ -12,7 +12,8 @@ export default function EditSection({sectionId}) {
     const section = useSelector((state) => state.sectionState.sections[sectionId])
     // const tasksObj = useSelector((state) => state.taskState.tasks)
     // const tasks = Object.values(tasksObj).filter(task => task.section_id === sectionId)
-    const { projectId } = useParams()
+    const { urlProjectId } = useParams()
+    const projectId = urlProjectId ? urlProjectId : section.project_id
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 
