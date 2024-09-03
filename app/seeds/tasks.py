@@ -22,7 +22,7 @@ def seed_tasks():
         due_time=time(13, 0), duration=timedelta(hours=1, minutes=30), repeat=True, repeat_type='Daily', repeat_start=date.today())
     
     task5 = Task(
-        user_id=1, project_id=4, section_id=2, title='Mop Floor', due_date=date(2024,8,29), 
+        user_id=1, project_id=4, section_id=2, title='Mop Floor', due_date=date(2024,9,4), 
         due_time=time(15, 0), duration=timedelta(hours=1), repeat=False)
 
     db.session.add(task1)

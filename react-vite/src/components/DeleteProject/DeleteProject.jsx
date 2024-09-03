@@ -25,8 +25,11 @@ export default function DeleteProject({projectId}) {
                 This will permanently delete &quot;{project.name}&quot; and all its tasks.
                 This can&apos;t be undone.
             </p>
-            <button onClick={() => closeModal()}>Cancel</button>
-            <button onClick={(e) => handleDeleteProject(e)}>Delete</button>
+            <div className="create-task-buttons">
+                <button onClick={() => closeModal()}>Cancel</button>
+                <button onClick={(e) => handleDeleteProject(e)}>Delete</button>
+
+            </div>
         </div>
     )
 }

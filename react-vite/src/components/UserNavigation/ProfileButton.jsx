@@ -52,7 +52,7 @@ function ProfileButton() {
             <>
               <li>{user.username}</li>
               <li>{user.email}</li>
-              <li>
+              <li className="create-task-buttons">
                 <button onClick={logout}>Log Out</button>
               </li>
             </>

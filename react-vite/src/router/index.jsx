@@ -10,6 +10,7 @@ import MyProjects from '../components/MyProjects';
 import Project from '../components/Project'
 import Navigation from "../components/Navigation/Navigation";
 import NewUserLayout from './NewUserLayout';
+import Landing from '../components/Landing';
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <> <Navigation /> <h1>Welcome!</h1> </>,
+        element: <> <Navigation /> <Landing /> </>,
       },
       {
         path: "login",

@@ -6,9 +6,9 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <div>
+    <div className="nav-container">
+      <NavLink className='nav-logo' to="/">TaskingIt</NavLink>
+      <div className="session-buttons">
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
       </div>

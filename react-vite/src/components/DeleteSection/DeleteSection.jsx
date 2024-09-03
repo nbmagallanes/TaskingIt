@@ -21,8 +21,10 @@ export default function DeleteSection({sectionId}) {
         <div>
             <h1> Delete section </h1>
             <p>Are you sure you want to delete {section.name} with its tasks?</p>
-            <button onClick={() => closeModal()}>Cancel</button>
-            <button onClick={handleDeleteSection}>Delete</button>
+            <div className="create-task-buttons">
+                <button onClick={() => closeModal()}>Cancel</button>
+                <button onClick={handleDeleteSection}>Delete</button>
+            </div>
         </div>
     )
 }
