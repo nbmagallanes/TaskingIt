@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { editSection } from "../../redux/section"
 import { useParams } from "react-router-dom"
@@ -13,7 +13,7 @@ export default function EditSection({sectionId}) {
     // const tasksObj = useSelector((state) => state.taskState.tasks)
     // const tasks = Object.values(tasksObj).filter(task => task.section_id === sectionId)
     const { urlProjectId } = useParams()
-    const projectId = urlProjectId ? urlProjectId : section.project_id
+    const projectId = urlProjectId ? urlProjectId : section?.project_id
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 
@@ -22,18 +22,11 @@ export default function EditSection({sectionId}) {
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
 
-    // const convertTime = (timeStr) => {
-    //     const [time, abbreviation] = timeStr.split(' ');
-    //     const [hours, minutes] = time.split(':')
-        
-    //     if (abbreviation == 'PM' && hours !== '12') return `${parseInt(hours) + 12}:${minutes}`
-    //     else if (abbreviation == 'AM' && hours == '12') return `00:${minutes}`
-    //     else return `${hours}:${minutes}`
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true);
+
+        if (Object.values(errors).length) return
 
         const editedSection = {
             project_id: newProject,
@@ -43,55 +36,53 @@ export default function EditSection({sectionId}) {
         const response = await dispatch(editSection({editedSection, projectId, sectionId}))
 
         if (response && !response.errors) {
-
-            // tasks.forEach(async (task) => {
-            //     const refactoredTask = Object.keys(task).reduce((acc, key) => {
-            //         acc[key] = task[key] === null ? '' : task[key];
-
-            //         if (key === 'due_time' && task[key]) acc[key] = convertTime(task[key])
-
-            //         return acc
-            //     }, {})
-
-            //     const updatedTask = {...refactoredTask, project_id: newProject}
-            //     const taskRes = await dispatch(editTask({editedTask: updatedTask, taskId: parseInt(task.id)}))
-            //     if (taskRes.errors) return task.errors
-            // })
-
             closeModal();
         }
 
-        if (response && response.errors) {
-            setErrors(response.errors)
-        }
+        // if (response && response.errors) {
+        //     setErrors(response.errors)
+        // }
     }
 
-    // useEffect(() => {
-    //     dispatch(getSection({projectId, sectionId}))
-    //     setName(section.name || '')
-    // }, [dispatch, section.name])
+    useEffect(() => {
+        const newErrors = {}
+        if (!name.length) newErrors.name = 'Name is required'
+        else if (name.length < 3) newErrors.name = 'Name must be 3 characters or more'
+        else if (name.length > 50) newErrors.name = 'Name must be 50 characters or less'
+
+        setErrors(newErrors)
+    }, [name])
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <p>Name</p>
-                <input id='name' 
-                    type='text' 
-                    value={name} 
-                    placeholder="Name this section"
-                    onChange={(e) => {setName(e.target.value)}} 
-                />
-                <div className="edit-section-errors-container">
-                    <p className="edit-section-errors">{submitted && errors.name}</p>
+        <div className="edit-section-container">
+            <form onSubmit={handleSubmit} className="create-section-form">
+                <h1 className="create-section-form-title">Edit Section</h1>
+                <div className="edit-section-input">
+                    <label>
+                        Name
+                        <input id='name' 
+                            type='text' 
+                            value={name} 
+                            placeholder="Name this section"
+                            onChange={(e) => {setName(e.target.value)}} 
+                        />
+                    </label>
+                    <div className="edit-section-errors-container">
+                        <p className="edit-section-errors">{submitted && errors.name}</p>
+                    </div>
+                    <label>
+                        Project
+                        <select name='Project' value={newProject} onChange={(e) => {setNewProject(e.target.value)}} >
+                            {projects.map(project => (
+                                <option value={project.id} key={project.id}>{project.name}</option>
+                            ))}
+                        </select> 
+                    </label>
                 </div>
-                <p>Project</p>
-                <select name='Project' value={newProject} onChange={(e) => {setNewProject(e.target.value)}} >
-                    {projects.map(project => (
-                        <option value={project.id} key={project.id}>{project.name}</option>
-                    ))}
-                </select> 
-                <button type='submit'>Save</button>    
-                <button type='button' onClick={() => closeModal()}>Cancel</button>
+                <div className="create-section-buttons">
+                    <button type='submit'>Save</button>    
+                    <button type='button' onClick={() => closeModal()}>Cancel</button>
+                </div>
             </form>
         </div>
     )
