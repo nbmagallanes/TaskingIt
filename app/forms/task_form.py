@@ -24,8 +24,8 @@ def validate_duration(form, field):
 class TaskForm(FlaskForm):
     project_id =IntegerField('Project ID', validators=[DataRequired()])
     section_id =IntegerField('Section ID', validators=[Optional()])
-    title = StringField('Title', validators=[DataRequired(), Length(min=3, max=150)])
-    description = TextAreaField("Description", validators=[Optional(), Length(min=3, max=1000)])
+    title = StringField('Title', validators=[DataRequired(), Length(min=2, max=150)])
+    description = TextAreaField("Description", validators=[Optional(), Length(max=300)])
     priority = IntegerField('Priority', validators=[Optional()])
     due_date = DateField('Due Date', format='%Y-%m-%d', validators=[Optional()])
     due_time = TimeField('Due Time', validators=[Optional()])
