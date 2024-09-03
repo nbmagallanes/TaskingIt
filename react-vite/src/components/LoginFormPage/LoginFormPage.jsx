@@ -31,8 +31,24 @@ function LoginFormPage() {
     // else {
     //   navigate("/");
     // }
-    console.log(errors)
   };
+
+  const handleDemoClick = async (e) => {
+    e.preventDefault();
+
+    setErrors({});
+    return await dispatch(
+      thunkLogin({
+        email:'demo@aa.io',
+        password:'password',
+      }))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      })
+  }
 
   useEffect(() => {
     if (sessionUser) {
@@ -88,6 +104,7 @@ function LoginFormPage() {
                 </div>
               </div>
               <button type="submit" className="signup-button">Log In</button>
+              <button type="button" className="signup-button" onClick={handleDemoClick}>Log in as Demo User</button>
             </form>
           </div>
           <div className="signup-image-container">
