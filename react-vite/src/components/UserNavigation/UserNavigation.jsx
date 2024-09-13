@@ -38,7 +38,7 @@ function UserNavigation() {
     } else {
         navigate('/')
     }
-  }, [user.id])
+  }, [user])
   
   return (
     <div className="usernav-container">
