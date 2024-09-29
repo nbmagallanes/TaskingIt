@@ -7,29 +7,42 @@ def seed_tasks():
     # Tasks for User: 1, Project: Home, NO SECTION
     task1 = Task(
         user_id=1, project_id=4, title='Check schedule for the day')
+    
+    task2 = Task(
+        user_id=1, project_id=4, title='Update routine')
 
     # Tasks for User: 1, Project: Home, Section: Routines
-    task2 = Task(
+    task3 = Task(
         user_id=1, project_id=4, section_id=1, title='Take pups for a walk', description='Daily walk for pups')
     
     # Tasks for User: 1, Project: Home, Section: Cleaning
-    task3 = Task(
+    task4 = Task(
         user_id=1, project_id=4, section_id=2, title='Clean Kitchen', 
         due_time=time(23, 0), duration=timedelta(hours=2, minutes=30), repeat=True, repeat_type='Daily', repeat_start=date.today())
     
-    task4 = Task(
+    task5 = Task(
         user_id=1, project_id=4, section_id=2, title='Wash Dishes', 
         due_time=time(13, 0), duration=timedelta(hours=1, minutes=30), repeat=True, repeat_type='Daily', repeat_start=date.today())
     
-    task5 = Task(
+    task6 = Task(
         user_id=1, project_id=4, section_id=2, title='Mop Floor', due_date=date(2024,9,4), 
         due_time=time(15, 0), duration=timedelta(hours=1), repeat=False)
+    
+    # Tasks for User: 1, Project: Inbox(id: 1) 
+    task7 = Task(
+        user_id=1, project_id=1, title='Add new tasks in Home project')
+    
+    task8 = Task(
+        user_id=1, project_id=1, title='Add new meals in Weekly Meals')
 
     db.session.add(task1)
     db.session.add(task2)
     db.session.add(task3)
     db.session.add(task4)
     db.session.add(task5)
+    db.session.add(task6)
+    db.session.add(task7)
+    db.session.add(task8)
    
     db.session.commit()
 
