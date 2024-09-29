@@ -6,20 +6,20 @@ from sqlalchemy.sql import text
 def seed_projects():
     # Creating starter inbox project for all seed users
     project1 = Project(
-        user_id=1, name='Inbox', description='Inbox', color='grey')
+        user_id=1, name='Inbox', color='grey')
     project2 = Project(
-        user_id=2, name='Inbox', description='Inbox', color='grey')
+        user_id=2, name='Inbox', color='grey')
     project3 = Project(
-        user_id=3, name='Inbox', description='Inbox', color='grey')
+        user_id=3, name='Inbox', color='grey')
 
     project4 = Project(
-        user_id=1, name='Home', description='All things home', color='grey')
+        user_id=1, name='Home', color='grey')
     project5 = Project(
-        user_id=1, name='Weekly Meals', description='Meals for the week of August 26', color='red')
+        user_id=1, name='Weekly Meals', color='red')
     project6 = Project(
-        user_id=2, name='Home', description='To track chores for the home', color='purple')
+        user_id=2, name='Home', color='purple')
     project7 = Project(
-        user_id=3, name='Workout Plan', description='Weekly workout plan', color='green')
+        user_id=3, name='Workout Plan', color='green')
 
     db.session.add(project1)
     db.session.add(project2)
