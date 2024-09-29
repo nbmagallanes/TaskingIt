@@ -32,7 +32,6 @@ export default function Project() {
     return (
         <div className='project-container'>
             <h1 className='project-page-title'>{project.name}</h1>
-            {project.description ? <p className='project-page-description'>{project.description}</p> : null}
             {unsectionTasks ? (
                 <div className='project-unsectioned-task-container'>
                     {unsectionTasks.map(task => (

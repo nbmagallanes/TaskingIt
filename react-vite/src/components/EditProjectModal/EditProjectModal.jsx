@@ -7,7 +7,6 @@ import './EditProjectModal.css'
 export default function EditProjectModal({projectId}) {
     const project = useSelector((state) => state.projectState.projects[projectId])
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
     const [color, setColor] = useState('Grey');
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
@@ -22,7 +21,6 @@ export default function EditProjectModal({projectId}) {
 
         const editedProject = {
             name,
-            description,
             color
         }
 
@@ -40,7 +38,6 @@ export default function EditProjectModal({projectId}) {
     useEffect(() => {
         if (project) {
             setName(project.name || '')
-            setDescription(project.description || '')
             setColor(project.color || 'Grey')
         }
     }, [project])
@@ -50,11 +47,9 @@ export default function EditProjectModal({projectId}) {
         if (!name.length) newErrors.name = 'Name is required'
         else if (name.length < 3) newErrors.name = 'Name must be 3 characters or more'
         else if (name.length > 50) newErrors.name = 'Name must be 50 characters or less'
-        if (!description.length) newErrors.description = 'Description is required'
-        else if (description.length > 200) newErrors.description = 'Description must be 200 characters or less'
 
         setErrors(newErrors)
-    }, [name, description])
+    }, [name])
 
 
     return (
@@ -72,17 +67,6 @@ export default function EditProjectModal({projectId}) {
                     </label>
                     <div className='edit-project-errors-container'>
                         <p className="edit-project-errors">{submitted && errors.name}</p>
-                    </div>
-                    <label>
-                        Description
-                        <input id='description' 
-                            type='text' 
-                            value={description} 
-                            onChange={(e) => {setDescription(e.target.value)}} 
-                        />
-                    </label>
-                    <div className='edit-project-errors-container'>
-                        <p className="edit-project-errors">{submitted && errors.description}</p>
                     </div>
                     <label>
                         Color

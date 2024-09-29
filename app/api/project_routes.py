@@ -42,7 +42,6 @@ def post_project():
         new_project = Project(
             user_id=current_user.id,
             name=form.data['name'],
-            description=form.data['description'],
             color=form.data['color']
         )
         db.session.add(new_project)
@@ -70,7 +69,6 @@ def edit_project(project_id):
             return jsonify({"error": "Unauthorized"}), 403
         
         project.name=form.data['name']
-        project.description=form.data['description']
         project.color=form.data['color']
 
         db.session.commit()

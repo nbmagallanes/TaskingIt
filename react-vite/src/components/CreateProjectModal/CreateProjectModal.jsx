@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateProjectModal() {
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
     const [color, setColor] = useState('Grey');
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
@@ -24,7 +23,6 @@ export default function CreateProjectModal() {
 
         const newProject = {
             name,
-            description,
             color
         }
 
@@ -32,7 +30,6 @@ export default function CreateProjectModal() {
 
         if (response && !response.errors) {
             setName('');
-            setDescription('');
             setColor('');
             closeModal();
             navigate(`/${response.user_id}/projects/${response.id}`)
@@ -48,11 +45,9 @@ export default function CreateProjectModal() {
         if (!name.length) newErrors.name = 'Name is required'
         else if (name.length < 3) newErrors.name = 'Name must be 3 characters or more'
         else if (name.length > 50) newErrors.name = 'Name must be 50 characters or less'
-        if (!description.length) newErrors.description = 'Description is required'
-        else if (description.length > 200) newErrors.description = 'Description must be 200 characters or less'
-
+      
         setErrors(newErrors)
-    }, [name, description])
+    }, [name])
 
     return (
         <div className='edit-section-container'>
@@ -69,17 +64,6 @@ export default function CreateProjectModal() {
                     </label>
                     <div className='create-project-errors-container'>
                         <p className="create-project-errors">{submitted && errors.name}</p>
-                    </div>
-                    <label>
-                        Description*
-                        <input id='description' 
-                            type='text' 
-                            value={description} 
-                            onChange={(e) => {setDescription(e.target.value)}}
-                        />
-                    </label>
-                    <div className='create-project-errors-container'>
-                        <p className="create-project-errors">{submitted && errors.description}</p>
                     </div>
                     <label>
                         Color   
