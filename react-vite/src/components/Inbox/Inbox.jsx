@@ -14,29 +14,29 @@ import './Inbox.css'
 export default function Inbox() {
     const projects = useSelector((state) => state.projectState.projects)
     const project = Object.values(projects)[0]
-    const projectId = project?.id
+    const projectId = project.id
     const sectionsObj = useSelector((state) => state.sectionState.sections)
-    const sections = Object.values(sectionsObj)
+    const sections = Object.values(sectionsObj).filter(section => section.project_id === projectId)
     const tasks = useSelector((state) => state.taskState.tasks)
-    const unsectionTasks = Object.values(tasks).filter(task => task.section_id === null )
-    const dispatch = useDispatch();
+    const unsectionedTasks = Object.values(tasks).filter(task => task.section_id === null && task.project_id === projectId)
+    // const dispatch = useDispatch();
     const [openMenu, setOpenMenu] = useState(null);
     const lastSectonId = sections[sections.length - 1]?.id
 
-    useEffect(() => {
-        if (projectId) {
-            dispatch(getProject(projectId))
-            dispatch(getProjectSections(projectId))
-            dispatch(getProjectTasks(projectId))
-        }
-    }, [projectId])
+    // useEffect(() => {
+    //     if (projectId) {
+    //         dispatch(getProject(projectId))
+    //         dispatch(getProjectSections(projectId))
+    //         dispatch(getProjectTasks(projectId))
+    //     }
+    // }, [projectId])
 
     return (
         <div className='project-container'>
             <h1 className='project-page-title'>{project?.name}</h1>
-            {unsectionTasks ? (
+            {unsectionedTasks ? (
                 <div className='project-unsectioned-task-container'>
-                    {unsectionTasks.map(task => (
+                    {unsectionedTasks.map(task => (
                         <ListViewTask key={task.id} task={task} projectView={true}/>
                     ))}
                 </div>
