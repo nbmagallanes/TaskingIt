@@ -1,41 +1,41 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProject } from '../../redux/project';
-import { getProjectSections } from '../../redux/section';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+// import { getProject } from '../../redux/project';
+// import { getProjectSections } from '../../redux/section';
 import Section from '../Section/Section';
 import OpenModalButton from '../OpenModalButton';
 import CreateSection from '../CreateSection/CreateSection';
-import { getProjectTasks } from '../../redux/task';
+// import { getProjectTasks } from '../../redux/task';
 import CreateTask from '../CreateTask/CreateTask';
 import ListViewTask from '../ListViewTask/ListViewTask';
 import { FiPlus } from "react-icons/fi";
 import './Project.css'
 
 export default function Project() {
-    const project = useSelector((state) => state.projectState.project)
+    const { projectId } = useParams();
+    const project = useSelector((state) => state.projectState.projects[projectId])
     const sectionsObj = useSelector((state) => state.sectionState.sections)
-    const sections = Object.values(sectionsObj)
+    const sections = Object.values(sectionsObj).filter(section => section.project_id === +projectId)
     const tasks = useSelector((state) => state.taskState.tasks)
-    const unsectionTasks = Object.values(tasks).filter(task => task.section_id === null )
+    const unsectionedTasks = Object.values(tasks).filter(task => task.section_id === null && task.project_id === +projectId)
 
     const [openMenu, setOpenMenu] = useState(null);
-    const dispatch = useDispatch();
-    const { projectId } = useParams();
+    // const dispatch = useDispatch();
     const lastSectonId = sections[sections.length - 1]?.id
 
-    useEffect(() => {
-        dispatch(getProject(projectId))
-        dispatch(getProjectSections(projectId))
-        dispatch(getProjectTasks(projectId))
-    }, [projectId])
+    // useEffect(() => {
+    //     dispatch(getProject(projectId))
+    //     dispatch(getProjectSections(projectId))
+    //     dispatch(getProjectTasks(projectId))
+    // }, [projectId])
 
     return (
         <div className='project-container'>
             <h1 className='project-page-title'>{project.name}</h1>
-            {unsectionTasks ? (
+            {unsectionedTasks ? (
                 <div className='project-unsectioned-task-container'>
-                    {unsectionTasks.map(task => (
+                    {unsectionedTasks.map(task => (
                         <ListViewTask key={task.id} task={task} projectView={true}/>
                     ))}
                 </div>
