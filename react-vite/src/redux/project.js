@@ -5,7 +5,7 @@ const UPDATE_PROJECT = 'project/updateProject'
 const DELETE_PROJECT = 'project/deleteProject'
 
 // Gets projects by userId
-const loadUserProjects = (projects) => ({
+export const loadUserProjects = (projects) => ({
     type: LOAD_USER_PROJECTS,
     projects
 })

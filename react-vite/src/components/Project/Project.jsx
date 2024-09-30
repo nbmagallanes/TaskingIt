@@ -18,6 +18,7 @@ export default function Project() {
     const sections = Object.values(sectionsObj)
     const tasks = useSelector((state) => state.taskState.tasks)
     const unsectionTasks = Object.values(tasks).filter(task => task.section_id === null )
+
     const [openMenu, setOpenMenu] = useState(null);
     const dispatch = useDispatch();
     const { projectId } = useParams();

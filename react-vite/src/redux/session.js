@@ -1,3 +1,7 @@
+import { loadUserProjects } from "./project";
+import { loadUserSections } from "./section";
+import { loadUserTasks } from "./task";
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -13,12 +17,23 @@ const removeUser = () => ({
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
 	if (response.ok) {
-		const data = await response.json();
+    const data = await response.json();
+
+    const user = {
+      id: data.id,
+      email: data.email,
+      username: data.username,
+      first_name: data.first_name,
+      last_name: data.last_name,
+    }
 		if (data.errors) {
 			return;
 		}
 
-		dispatch(setUser(data));
+		await dispatch(setUser(user));
+    await dispatch(loadUserProjects(data.projects))
+    await dispatch(loadUserSections(data.sections))
+    await dispatch(loadUserTasks(data.tasks))
 	}
 };
 

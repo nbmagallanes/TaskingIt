@@ -11,7 +11,7 @@ const loadProjectTasks = (tasks) => ({
     tasks
 })
 
-const loadUserTasks = (tasks) => ({
+export const loadUserTasks = (tasks) => ({
     type: LOAD_USER_TASKS,
     tasks
 })

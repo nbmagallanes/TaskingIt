@@ -1,6 +1,7 @@
 import { getUserProjects } from "./project"
 import { editTask } from '../redux/task'
 
+const LOAD_USER_SECTIONS = 'section/getUserSections'
 const LOAD_PROJECT_SECTIONS = 'section/getProjectSections'
 const LOAD_SECTION = 'section/getSection'
 const CREATE_SECTION = 'section/createSection'
@@ -8,6 +9,12 @@ const UPDATE_SECTION = 'section/updateSection'
 const DELETE_SECTION = 'section/deleteSection'
 
 // Gets sections by userId
+
+export const loadUserSections = (sections) => ({
+    type: LOAD_USER_SECTIONS,
+    sections
+})
+
 const loadProjectSections = (sections) => ({
     type: LOAD_PROJECT_SECTIONS,
     sections
@@ -148,6 +155,11 @@ const initialState = { section: {}, sections: {} }
 const sectionsReducer = (state=initialState, action) => {
     let newState = {};
     switch (action.type) {
+        case LOAD_USER_SECTIONS: {
+            newState = {...state, sections: {}}
+            action.sections.forEach(section => {newState.sections[section.id] = section})
+            return newState
+        }
         case LOAD_PROJECT_SECTIONS: {
             newState = {...state, sections:{}}
             action.sections.forEach(section => {newState.sections[section.id] = section})

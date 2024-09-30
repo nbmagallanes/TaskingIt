@@ -37,5 +37,8 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'projects': [project.to_dict() for project in self.projects],
+            'sections': [section.to_dict() for section in self.sections],
+            'tasks': [task.to_dict() for task in self.tasks]
         }

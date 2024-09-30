@@ -16,14 +16,14 @@ class Project(db.Model):
     sections = db.relationship('Section', back_populates='project', cascade='all, delete')
 
     def to_dict(self):
-        unsectioned_tasks = [task.to_dict() for task in self.tasks if not task.section_id]
+        # unsectioned_tasks = [task.to_dict() for task in self.tasks if not task.section_id]
 
         return {
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
             'color': self.color,
-            'sections': [section.to_dict() for section in self.sections],
-            'unsectioned_tasks': unsectioned_tasks,
+            'sections': [section.custom_to_dict() for section in self.sections],
+            # 'unsectioned_tasks': unsectioned_tasks,
             'task_count': len(self.tasks)
         }

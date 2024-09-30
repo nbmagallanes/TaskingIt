@@ -21,7 +21,7 @@ class Section(db.Model):
             'user_id': self.user_id,
             'project_id': self.project_id,
             'name': self.name,
-            'tasks': [task.to_dict() for task in self.tasks]
+            # 'tasks': [task.to_dict() for task in self.tasks]
         }
     
     def custom_to_dict(self):
