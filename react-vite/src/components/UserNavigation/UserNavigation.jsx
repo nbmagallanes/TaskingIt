@@ -2,9 +2,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import ProjectOptionsButton from "./ProjectOptionsButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getUserProjects } from "../../redux/project";
+// import { getUserProjects } from "../../redux/project";
 import OpenModalButton from '../OpenModalButton'
 import CreateProjectModal from "../CreateProjectModal/CreateProjectModal";
 import CreateTask from '../CreateTask/CreateTask'
@@ -20,7 +20,7 @@ function UserNavigation() {
   const projects = Object.values(projectsObj)
   const [openMenu, setOpenMenu] = useState(null);
 
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleOpenMenu = (projectId) => {
@@ -33,12 +33,18 @@ function UserNavigation() {
   }
 
   useEffect(() => {
-    if (user) {
-        dispatch(getUserProjects(user.id))
-    } else {
+    if (!user) {
         navigate('/')
     }
   }, [user])
+
+//   useEffect(() => {
+//     if (user) {
+//         dispatch(getUserProjects(user.id))
+//     } else {
+//         navigate('/')
+//     }
+//   }, [user])
   
   return (
     <div className="usernav-container">
