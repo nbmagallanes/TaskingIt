@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTasks } from "../../redux/task";
+// import { getUserTasks } from "../../redux/task";
 import OpenModalButton from "../OpenModalButton";
 import CreateTask from "../CreateTask/CreateTask";
 import ListViewTask from "../ListViewTask/ListViewTask";
@@ -22,7 +22,7 @@ export default function TodayPage() {
   const tasksObj = useSelector(state => state.taskState.tasks)
   const tasks = Object.values(tasksObj).filter(task => task.due_date === formatedToday)
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const convertTime = (timeStr) => {
     const [time, abbreviation] = timeStr.split(' ');
@@ -40,10 +40,10 @@ export default function TodayPage() {
     return timeA - timeB;
   });
 
-  useEffect(() => {
-    dispatch(getUserTasks())
+  // useEffect(() => {
+  //   dispatch(getUserTasks())
 
-  }, [dispatch])
+  // }, [dispatch])
 
   return (
     <div className="today-container">

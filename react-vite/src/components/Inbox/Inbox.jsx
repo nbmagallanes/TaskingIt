@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProject } from '../../redux/project';
-import { getProjectSections } from '../../redux/section';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+// import { getProject } from '../../redux/project';
+// import { getProjectSections } from '../../redux/section';
 import Section from '../Section/Section';
 import OpenModalButton from '../OpenModalButton';
 import CreateSection from '../CreateSection/CreateSection';
-import { getProjectTasks } from '../../redux/task';
+// import { getProjectTasks } from '../../redux/task';
 import CreateTask from '../CreateTask/CreateTask';
 import ListViewTask from '../ListViewTask/ListViewTask';
 import { FiPlus } from "react-icons/fi";
