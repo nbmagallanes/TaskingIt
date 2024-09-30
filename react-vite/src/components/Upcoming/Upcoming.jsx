@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { getUserTasks } from '../../redux/task'
+import { useSelector } from 'react-redux'
+// import { useEffect } from 'react'
+// import { getUserTasks } from '../../redux/task'
 import './Upcoming.css'
 import CreateTask from '../CreateTask/CreateTask'
 import OpenModalButton from '../OpenModalButton'
@@ -11,7 +11,7 @@ export default function Upcoming() {
     const tasks = Object.values(tasksObj)
     const projectsObj = useSelector(state => state.projectState.projects)
     const projects = Object.values(projectsObj)
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const convertTime = (timeStr) => {
         const [time, abbreviation] = timeStr.split(' ');
@@ -70,9 +70,9 @@ export default function Upcoming() {
         }
     }
 
-    useEffect(() => {
-        dispatch(getUserTasks())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getUserTasks())
+    // }, [dispatch])
 
     return (
         <div className='upcoming-page-container'>
