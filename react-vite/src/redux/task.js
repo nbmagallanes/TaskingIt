@@ -41,7 +41,6 @@ export const getProjectTasks = (projectId) => async (dispatch) => {
 
     if (response.ok) {
         const resTasks = await response.json()
-        console.log('FROM PROJECT TASKS', resTasks)
         dispatch(loadProjectTasks(resTasks))
         // return tasks
     } else {
@@ -55,7 +54,6 @@ export const getUserTasks = () => async (dispatch) => {
 
     if (response.ok) {
         const resTasks = await response.json()
-        console.log('FROM USER TASKS', resTasks)
         dispatch(loadUserTasks(resTasks))
         // return tasks
     } else {
@@ -139,7 +137,6 @@ const tasksReducer = (state=initialState, action) => {
             return newState
         }
         case LOAD_USER_TASKS: {
-            console.log('CHECKING STATE', state)
             newState = {...state, tasks: {}}
             action.tasks.forEach(task => {newState.tasks[task.id] = task})
             return newState
