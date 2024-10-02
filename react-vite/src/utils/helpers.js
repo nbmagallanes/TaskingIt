@@ -1,7 +1,6 @@
 import { store } from "../main"
 
 export const mapSectionsToProjects = (projectsArr, sectionsArr) => {
-    console.log(projectsArr, sectionsArr)
     const mappedProjects = [];
 
     for (let project of projectsArr) {
@@ -14,7 +13,6 @@ export const mapSectionsToProjects = (projectsArr, sectionsArr) => {
 
         mappedProjects.push({...project, sections})
     }
-    console.log('finalll',mappedProjects)
 
     return mappedProjects;
 }

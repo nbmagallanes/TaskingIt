@@ -99,10 +99,10 @@ export const editSection = ({editedSection, projectId, sectionId}) => async (dis
         await dispatch(updateSection(resSection))
         
         if (resSection.project_id !== projectId) {
-            await dispatch(getProjectSections(projectId))
+            // await dispatch(getProjectSections(projectId))
 
             const state = getState()
-            const tasks = Object.values(state.taskState.tasks)
+            const tasks = Object.values(state.taskState.tasks).filter(task => task.section_id === sectionId)
 
             tasks.forEach( async (task) => {
                 const refactoredTask = Object.keys(task).reduce((acc, key) => {
@@ -128,7 +128,7 @@ export const editSection = ({editedSection, projectId, sectionId}) => async (dis
         }
          // When sections is updated, 
          // it updates the project state to fetch section names
-        dispatch(getUserProjects(resSection.user_id))
+        // dispatch(getUserProjects(resSection.user_id))
         
         return resSection
     } else {
