@@ -60,8 +60,9 @@ export default function Project() {
                                 section={section} 
                                 projectView={true} 
                                 openMenu={openMenu}
-                                setOpenMenu={setOpenMenu}/>
-                            <OpenModalButton 
+                                setOpenMenu={setOpenMenu}
+                            />
+                            {/* <OpenModalButton 
                                 buttonText={
                                     <span className='add-task-button-span'>
                                         <FiPlus className='add-task-button-icon' />
@@ -70,7 +71,7 @@ export default function Project() {
                                 }
                                 modalComponent={<CreateTask/>}
                                 className='add-task-button'
-                            />
+                            /> */}
                             {lastSectonId === section.id ? (
                                 <div className='project-add-section-active'>
                                     <OpenModalButton 

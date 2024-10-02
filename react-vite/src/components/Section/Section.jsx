@@ -2,6 +2,9 @@ import { useSelector } from 'react-redux'
 // import { useState } from 'react'
 import ListViewTask from '../ListViewTask/ListViewTask'
 import SectionOptionsButton from "./SectionOptionsButton"
+import OpenModalButton from '../OpenModalButton'
+import CreateTask from '../CreateTask/CreateTask'
+import { FiPlus } from "react-icons/fi";
 
 import './Section.css'
 
@@ -32,6 +35,16 @@ export default function Section({section, projectView, openMenu, setOpenMenu}) {
                     ))}
                 </div>
             ): null }
+            <OpenModalButton 
+                buttonText={
+                    <span className='add-task-button-span'>
+                        <FiPlus className='add-task-button-icon' />
+                        Add Task
+                    </span>
+                }
+                modalComponent={<CreateTask sectionId={section.id}/>}
+                className='add-task-button'
+            />
         </div>
     )
 }
