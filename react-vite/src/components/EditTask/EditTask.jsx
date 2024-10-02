@@ -3,15 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import { useParams } from "react-router-dom";
 import { editTask } from "../../redux/task";
+import { mapSectionsToProjects } from "../../utils/helpers";
 import './EditTask.css'
 
 export default function EditTask({taskId}) {
     const projectsObj = useSelector(state => state.projectState.projects)
     const projects = Object.values(projectsObj)
+    const sectionsObj = useSelector(state => state.sectionState.sections)
+    const sections = Object.values(sectionsObj)
     const task = useSelector(state => state.taskState.tasks[taskId])
     const { projectId } = useParams();
     const { closeModal } = useModal();
     const dispatch = useDispatch();
+    const projectSection = mapSectionsToProjects(projects, sections)
     
     const convertTime = (timeStr) => {
         const [time, abbreviation] = timeStr.split(' ');
@@ -173,7 +177,7 @@ export default function EditTask({taskId}) {
                                     value={newSectionId ? `${newProjectId}-${newSectionId}` : newProjectId} 
                                     onChange={handleProjectSectionChange}
                                 >
-                                    {projects.map(project => (
+                                    {projectSection.map(project => (
                                         <Fragment key={project.id}>
                                             <option value={project.id}>{project.name}</option>
                                             {project.sections && project.sections.map(section => (

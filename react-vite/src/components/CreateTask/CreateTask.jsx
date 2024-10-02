@@ -15,7 +15,6 @@ export default function CreateTask({sectionId, date}) {
     const { projectId } = useParams();
     const { closeModal } = useModal();
     const dispatch = useDispatch();
-
     const projectSection = mapSectionsToProjects(projects, sections)
 
     const [newProjectId, setNewProjectId] = useState(projectId ? projectId : projects[0].id)
