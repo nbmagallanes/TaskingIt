@@ -30,10 +30,8 @@ export default function Project() {
     //     dispatch(getProjectTasks(projectId))
     // }, [projectId])
 
-    useEffect(() => {
-        if (project.id !== +projectId)
-            return <div>Loading...</div>
-    }, [projectId])
+    if (project.id !== +projectId)
+        return <div>Loading...</div>
 
     return (
         <div className='project-container'>
