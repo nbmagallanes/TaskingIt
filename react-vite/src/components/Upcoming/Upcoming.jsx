@@ -11,6 +11,8 @@ export default function Upcoming() {
     const tasks = Object.values(tasksObj)
     const projectsObj = useSelector(state => state.projectState.projects)
     const projects = Object.values(projectsObj)
+    const sectionsObj = useSelector(state => state.sectionState.sections)
+    const sections = Object.values(sectionsObj)
     // const dispatch = useDispatch();
 
     const convertTime = (timeStr) => {
@@ -62,7 +64,7 @@ export default function Upcoming() {
     const getTaskProject = (projectId, sectionId) => {
         if (projectId && sectionId) {
           const project = projects.find(project => project.id === projectId)
-          const section = project?.sections.find(section => section.id === sectionId)
+          const section = sections.find(section => section.id === sectionId)
           return `# ${project?.name} / ${section?.name}`
         } else {
           const project = projects.find(project => project.id === projectId)
