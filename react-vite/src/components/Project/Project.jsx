@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { getProject } from '../../redux/project';
 // import { getProjectSections } from '../../redux/section';
@@ -29,6 +29,11 @@ export default function Project() {
     //     dispatch(getProjectSections(projectId))
     //     dispatch(getProjectTasks(projectId))
     // }, [projectId])
+
+    useEffect(() => {
+        if (project.id !== +projectId)
+            return <div>Loading...</div>
+    }, [projectId])
 
     return (
         <div className='project-container'>
