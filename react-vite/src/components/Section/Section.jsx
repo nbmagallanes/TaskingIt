@@ -5,7 +5,6 @@ import SectionOptionsButton from "./SectionOptionsButton"
 import OpenModalButton from '../OpenModalButton'
 import CreateTask from '../CreateTask/CreateTask'
 import { FiPlus } from "react-icons/fi";
-
 import './Section.css'
 
 export default function Section({section, projectView, openMenu, setOpenMenu}) {

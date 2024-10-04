@@ -1,5 +1,3 @@
-import { store } from "../main"
-
 export const mapSectionsToProjects = (projectsArr, sectionsArr) => {
     const mappedProjects = [];
 

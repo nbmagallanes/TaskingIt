@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { getProject } from '../../redux/project';
 // import { getProjectSections } from '../../redux/section';
