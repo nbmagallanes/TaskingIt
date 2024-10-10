@@ -25,7 +25,8 @@ export default function Landing() {
         <div className="landing-container">
             <div className='landing-subcontainer'>
                 <div className="landing-left-side">
-                    <h1>Master your day, one Task at a Time</h1>
+                    <h1>Take charge of your day, <br/>
+                    task by task</h1>
                     <h3>With TaskingIt you can plan your life, work, and everything in between. Join today and find out why everyone is on TaskingIt!</h3>
                     <NavLink className="landing-link" to="/signup">Join us!</NavLink>
                 </div>

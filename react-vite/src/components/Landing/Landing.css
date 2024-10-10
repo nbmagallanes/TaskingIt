@@ -22,25 +22,28 @@
 
 .landing-left-side{
     /* flex: 1; */
-    padding: 40px 80px;
+    padding: 20px 80px;
     text-align: center;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: -140px;
+    margin-bottom: -120px;
     z-index: 1;
 } 
 
 .landing-left-side > h1{
     flex: 1;
-    padding: 40px 60px;
+    padding: 20px 60px;
     text-align: center;
+    font-size: 50px;
     box-sizing: border-box;
 } 
 
 .landing-left-side > h3{
     font-weight: normal;
+    padding: 10px 60px;
+    color: gray;
 } 
 
 .landing-right-side {
@@ -62,11 +65,11 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    background-color: #7B66A7;
+    background-color: var(--light-sub-color);
     height: 40px;
     width: 100px;
-    border-radius: 20px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
-    margin-top: 40px;
+    margin: 20px 0px;
 }
