@@ -4,27 +4,32 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80%;
+    margin: 5px 5px;
     /* flex: 1; */
+    overflow: hidden;
+    position: relative;
 }
 
 .landing-subcontainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
-    height: 100%
+    max-width: 1024px;
+    height: 100%;
+    flex: 1;
 }
 
 .landing-left-side{
-    flex: 1;
+    /* flex: 1; */
     padding: 40px 80px;
     text-align: center;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: -140px;
+    z-index: 1;
 } 
 
 .landing-left-side > h1{
@@ -39,14 +44,16 @@
 } 
 
 .landing-right-side {
-    flex: 1;
+    /* flex: 2; */
     display: flex;
     justify-content: center;
     align-items: center; 
+    position: relative;
+    z-index: 0;
 }
 
 .landing-right-side > img{
-    max-width: 100%;
+    max-width: 120%;
     height: auto;
 }
 
