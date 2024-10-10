@@ -2,14 +2,19 @@ import { NavLink } from "react-router-dom";
 // import OpenModalMenuItem from "./OpenModalMenuItem";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
+import logo from '../../../images/taskingIt-logo.png'
+import nameLogo from '../../../images/taskingIt-name.png'
 import "./Navigation.css";
 
 function Navigation() {
   return (
     <div className="nav-container">
-      <NavLink className='nav-logo' to="/">TaskingIt</NavLink>
+      <NavLink className="nav-logo-container" to="/">
+        <img className="nav-logo" src={logo}/>
+        <img className="nav-name-logo" src={nameLogo}/>
+      </NavLink>
       <div className="session-buttons">
-        <NavLink to="/login">Log In</NavLink>
+        <NavLink className="log-in" to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
       </div>
     </div>
