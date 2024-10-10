@@ -14,8 +14,8 @@ function Navigation() {
         <img className="nav-name-logo" src={nameLogo}/>
       </NavLink>
       <div className="session-buttons">
-        <NavLink className="log-in" to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className="login" to="/login">Log In</NavLink>
+        <NavLink className="signup" to="/signup">Sign Up</NavLink>
       </div>
     </div>
 
