@@ -2,7 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 90px;
+    padding: 20px 60px;
+    margin: 0 auto;   
+    max-width: 1440px;
+    box-sizing: border-box;
 }
 
 .nav-logo-container {
@@ -48,4 +51,10 @@
     border-radius: 8px;
     color: white;
     font-weight: bold
+}
+
+@media (max-width: 835px) {
+    .nav-container {
+        padding: 20px 30px
+    }
 }
