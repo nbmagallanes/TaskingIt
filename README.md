@@ -52,68 +52,6 @@ image
 
 image
 
-## Endpoints
-
-### Auth
-
-**`GET /`**  
- Authenticates the current user.
-
-**Successful Response:**
-
-**Error Response:**  
-
-**`POST /login`**  
-Logs a user in. Requires email and password. Returns user details on successful login.
-
-**Successful Response:**
-
-**Error Response:**  
-
-**`POST /signup`**
-Creates a new user and logs them in. Requires username, first name, last name, email, and password. Returns user details on successful signup.
-
-**Successful Response:**
-
-**`GET /unauthorized`**
-
-**`GET /logout`**
-
-### Projects
-
-**`GET /`**
-Retrieves all Projects.
-
-**Successful Response:**
-
-**Error Response:**
-
-**`GET /<int:project_id>`**
-Retrieves a specific project by its ID.
-
-**Successful Response:**
-
-**Error Response:**
-
-**`POST /create`**
-
-Creates a new Project
-
-**Successful Response:**
-
-**Error Response:**
-
-**`PUT /<int:project_id>`**
-
-Updates a specific project by its ID.
-
-**Successful Response:**
-
-**Error Response:**
-
-**`DELETE /<int:project_id>`**
-Deletes a specific project by its ID.
-
 **Successful Response:**
 
 **Error Response:**
