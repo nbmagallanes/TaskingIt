@@ -1,7 +1,5 @@
 # TaskingIt
 
-TaskingIt is a todoist inspire task-management application
-
 ## Live Link
 
 https://taskingit.onrender.com/
@@ -31,27 +29,3 @@ https://taskingit.onrender.com/
 [Feature List](https://github.com/nbmagallanes/TaskingIt/wiki/MVP's-Feature-List) |
 [Schema](https://github.com/nbmagallanes/TaskingIt/wiki/TaskingIt-Schema) |
 [User Stories](https://github.com/nbmagallanes/TaskingIt/wiki/TaskingIt-Schema)
-
-## Features
-
-## Site Preview
-
-### Landing Page
-
-image
-
-### Today Page
-
-image
-
-### Upcoming Page
-
-image
-
-### User's Project Page
-
-image
-
-**Successful Response:**
-
-**Error Response:**
