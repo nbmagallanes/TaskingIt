@@ -76,136 +76,136 @@ function SignupFormPage() {
     setErrors(newErrors)
   }, [firstName, lastName, email, password, username])
 
-  useEffect(() => {
-    if (sessionUser) {
-      navigate(`/${sessionUser.id}/today`);
-    }
-  }, [sessionUser, navigate]);
+  // useEffect(() => {
+  //   if (sessionUser) {
+  //     navigate(`/${sessionUser.id}/today`);
+  //   }
+  // }, [sessionUser, navigate]);
+
+  if (sessionUser) navigate(`/${sessionUser.id}/today`);
 
   return (
     <div className="signup-page-container">
-      <div className="login-nav-container">
+      <div className="signup-nav-container">
         <NavLink className="nav-logo-container" to="/">
           <img className="nav-logo" src={logo}/>
           <img className="nav-name-logo" src={nameLogo}/>
         </NavLink>
         <NavLink className="signup" to="/login">Log In</NavLink>
       </div>
-      <div className="signup-content">
-        <div className="signup-form-content">
-          <h1>Sign Up</h1>
-          <div className="signup-errors-container">
-            {errors.server && <p>{errors.server}</p>}
-          </div>
-          <form onSubmit={handleSubmit} className="signup-form">
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  First Name
-                  <input
-                    type="text"
-                    value={firstName}
-                    placeholder="Enter your first name..."
-                    onChange={(e) => setFirstName(e.target.value)}
-                    maxLength={40}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.firstName && <p>{errors.firstName}</p>}
-              </div>
-            </div>
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  Last Name
-                  <input
-                    type="text"
-                    value={lastName}
-                    placeholder="Enter your last name..."
-                    onChange={(e) => setLastName(e.target.value)}
-                    maxLength={40}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.lastName && <p>{errors.lastName}</p>}
-              </div>
-            </div>
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  Email
-                  <input
-                    type="email"
-                    value={email}
-                    placeholder="Enter your email..."
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.email && <p>{errors.email}</p>}
-              </div>
-            </div>
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  Username
-                  <input
-                    type="text"
-                    value={username}
-                    placeholder="Enter your username..."
-                    onChange={(e) => setUsername(e.target.value)}
-                    maxLength={20}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.username && <p>{errors.username}</p>}
-              </div>
-            </div>
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  Password
-                  <input
-                    type="password"
-                    value={password}
-                    placeholder="Enter your password..."
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.password && <p>{errors.password}</p>}
-              </div>
-            </div>
-            <div>
-              <div className="signup-input-container">
-                <label>
-                  Confirm Password
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    placeholder="Confirm your password..."
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="signup-errors-container">
-                {submitted && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-              </div>
-            </div>
-            <button className="signup-button" type="submit">Sign Up</button>
-          </form>
+      <div className="signup-form-container">
+        <h1>Sign Up</h1>
+        <div className="signup-errors-container">
+          {errors.server && <p>{errors.server}</p>}
         </div>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <div>
+            <div className="signup-input-container">
+              <label>
+                First Name
+                <input
+                  type="text"
+                  value={firstName}
+                  placeholder="Enter your first name..."
+                  onChange={(e) => setFirstName(e.target.value)}
+                  maxLength={40}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.firstName && <p>{errors.firstName}</p>}
+            </div>
+          </div>
+          <div>
+            <div className="signup-input-container">
+              <label>
+                Last Name
+                <input
+                  type="text"
+                  value={lastName}
+                  placeholder="Enter your last name..."
+                  onChange={(e) => setLastName(e.target.value)}
+                  maxLength={40}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.lastName && <p>{errors.lastName}</p>}
+            </div>
+          </div>
+          <div>
+            <div className="signup-input-container">
+              <label>
+                Email
+                <input
+                  type="email"
+                  value={email}
+                  placeholder="Enter your email..."
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.email && <p>{errors.email}</p>}
+            </div>
+          </div>
+          <div>
+            <div className="signup-input-container">
+              <label>
+                Username
+                <input
+                  type="text"
+                  value={username}
+                  placeholder="Enter your username..."
+                  onChange={(e) => setUsername(e.target.value)}
+                  maxLength={20}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.username && <p>{errors.username}</p>}
+            </div>
+          </div>
+          <div>
+            <div className="signup-input-container">
+              <label>
+                Password
+                <input
+                  type="password"
+                  value={password}
+                  placeholder="Enter your password..."
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.password && <p>{errors.password}</p>}
+            </div>
+          </div>
+          <div>
+            <div className="signup-input-container">
+              <label>
+                Confirm Password
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  placeholder="Confirm your password..."
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <div className="signup-errors-container">
+              {submitted && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            </div>
+          </div>
+          <button className="signup-button" type="submit">Sign Up</button>
+        </form>
       </div>
     </div>
   );

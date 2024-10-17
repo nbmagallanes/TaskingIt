@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -51,12 +51,13 @@ function LoginFormPage() {
       })
   }
 
-  useEffect(() => {
-    if (sessionUser) {
-      navigate(`/${sessionUser.id}/today`);
-    }
-  }, [sessionUser, navigate]);
+  // useEffect(() => {
+  //   if (sessionUser) {
+  //     navigate(`/${sessionUser.id}/today`);
+  //   }
+  // }, [sessionUser, navigate]);
 
+  if (sessionUser) navigate(`/${sessionUser.id}/today`);
 
   return (
     <div className="login-page-container">
