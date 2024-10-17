@@ -2,51 +2,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    height: 100%;
+    max-width: 940px;
+    margin: 0 auto;   
     padding: 24px;
+    height: 100%;
     box-sizing: border-box;
 }
 
-.signup-page-subcontainer {
-    display: flex;
-    flex-direction: column;
-    width: 940px;
-    gap: 30px
-}
-
-.signup-navbar {
-    display: flex;
-    justify-content: start;
-}
-
-.signup-logo {
-    /* margin: 15px 20px; */
-    text-decoration: none;
-    font-size: xx-large;
-    font-weight: 600;
-    color: #7B66A7;
-    padding-bottom: 30px;
-}
-
-.signup-content {
+.signup-nav-container {
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
-    gap:40px
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%
 }
 
-.signup-form-content {
+.signup-form-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* width: 400px; */
-    /* padding-top: 30px; */
-    flex: 1;
+    justify-content: center;
+    margin-top: 60px;
 }
 
-.signup-form-content > h1 {
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 5px
+}
+
+.signup-form-container > h1 {
     width: 100%;
     text-align: start;
     margin-bottom: 20px;
@@ -54,18 +39,11 @@
     font-weight: 700;
 }
 
-.signup-form {
-    display: flex;
-    flex-direction: column;
-    width: 390px;
-    gap: 5px
-}
-
 .signup-input-container {
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 8px 8px 4px;
-    flex:1
+    flex: 1
 }
 
 .signup-input-container label {
@@ -96,20 +74,10 @@
 }
 
 .signup-button {
-    background-color:  #7B66A7;
+    background-color: var(--light-sub-color);
     color: white;
+    font-weight: bold;
     border: none;
     height: 46px;
     border-radius: 10px;
-}
-
-.signup-image-container {
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
-
-.signup-image {
-    width: 110%;
-    height: 90%;
 }

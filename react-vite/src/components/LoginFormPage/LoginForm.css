@@ -43,7 +43,7 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 8px 8px 4px;
-    flex:1
+    flex: 1
 }
 
 .login-input-container label {
