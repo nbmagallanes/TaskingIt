@@ -76,13 +76,11 @@ function SignupFormPage() {
     setErrors(newErrors)
   }, [firstName, lastName, email, password, username])
 
-  // useEffect(() => {
-  //   if (sessionUser) {
-  //     navigate(`/${sessionUser.id}/today`);
-  //   }
-  // }, [sessionUser, navigate]);
-
-  if (sessionUser) navigate(`/${sessionUser.id}/today`);
+  useEffect(() => {
+    if (sessionUser) {
+      navigate(`/${sessionUser.id}/today`);
+    }
+  }, [sessionUser, navigate]);
 
   return (
     <div className="signup-page-container">
