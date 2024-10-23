@@ -1,5 +1,7 @@
 # TaskingIt
 
+TaskingIt is a productivity platform designed to help users efficiently manage tasks. It offers a seamless interface for creating, organizing, and tracking tasks and encourages users to stay consistent to achieve their goals through the use of recurring tasks. 
+
 ## Live Link
 
 https://taskingit.onrender.com/
