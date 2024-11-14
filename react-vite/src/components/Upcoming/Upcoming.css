@@ -38,17 +38,25 @@
     overflow-y: auto;
 }
 
-/* .upcoming-tasks-container {
-    max-height: 65vh;
-    overflow-y: auto;
-} */
+.upcoming-day-header {
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upcoming-dates {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+}
 
 .upcoming-task {
     display: flex;
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
-    margin: 10px 0px;
+    margin: 0px 0px 10px;
 }
 
 .upcoming-task-button {
