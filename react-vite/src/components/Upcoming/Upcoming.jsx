@@ -80,7 +80,7 @@ export default function Upcoming() {
         <div className='upcoming-page-container'>
             <div className='upcoming-top-container'>
                 <h1 className='upcoming-title'>Upcoming</h1>
-                {/* <p>Date placeholder</p> */}
+                <p className='upcoming-month'>{newDateToday.toLocaleDateString('default', { month: 'long', year: 'numeric'})}</p>
             </div>
             <div className='upcoming-middle-container'></div>
             <div className='upcoming-bottom-container'>

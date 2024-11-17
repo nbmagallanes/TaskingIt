@@ -12,9 +12,14 @@
 }
 
 .upcoming-title {
-    margin: 20px 0px;
+    margin: 20px 0px 15px;
     font-size: 26px;
     font-weight: 600;
+}
+
+.upcoming-month {
+    font-size: 14px;
+    padding: 0px 3px;
 }
 
 .upcoming-middle-container {
