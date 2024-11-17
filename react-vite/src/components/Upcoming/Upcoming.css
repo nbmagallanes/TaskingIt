@@ -68,3 +68,22 @@
     background-color: transparent;
     cursor: pointer;
 }
+
+.upcoming-task-title {
+    font-size: var(--task-title-font-size);
+}
+
+.upcoming-task-description {
+    font-size: var(--task-description-font-size);
+    color: var(--task-description-color)
+}
+
+.upcoming-task-time {
+    font-size: var(--task-due-time-font-size);
+    color: var(--task-due-time-color);
+}
+
+.upcoming-task-project {
+    font-size: var(--task-project-label-font-size);
+    color: var(--task-project-label-color)
+}

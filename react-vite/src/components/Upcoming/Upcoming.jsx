@@ -97,9 +97,10 @@ export default function Upcoming() {
                                             <button className='upcoming-task-button'></button>
                                         </div>
                                         <div className='upcoming-task-info'>
-                                            <p>{task.title}</p>
-                                            <p>{task.due_time}</p>
-                                            <p>{getTaskProject(task.project_id, task.section_id)}</p>
+                                            <p className='upcoming-task-title'>{task.title}</p>
+                                            <p className='upcoming-task-description'>{task.description}</p>
+                                            <p className='upcoming-task-time'>{task.due_time}</p>
+                                            <p className='upcoming-task-project'>{getTaskProject(task.project_id, task.section_id)}</p>
                                         </div>
                                     </div>
                                 ))
