@@ -12,9 +12,14 @@
 }
 
 .upcoming-title {
-    margin: 20px 0px;
+    margin: 20px 0px 15px;
     font-size: 26px;
     font-weight: 600;
+}
+
+.upcoming-month {
+    font-size: 14px;
+    padding: 0px 3px;
 }
 
 .upcoming-middle-container {
@@ -33,22 +38,33 @@
     margin-right: 8px;
     min-width: 280px;
     width: 280px;
-    padding: 0px 8px;
+    border: white solid 1px;
     max-height: 65vh;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
-/* .upcoming-tasks-container {
-    max-height: 65vh;
-    overflow-y: auto;
-} */
+.upcoming-day-header {
+    box-sizing: border-box;
+    padding: 0px 8px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upcoming-dates {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+}
 
 .upcoming-task {
     display: flex;
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
-    margin: 10px 0px;
+    margin: 0px 0px 10px;
 }
 
 .upcoming-task-button {
@@ -59,4 +75,28 @@
     border: 1px solid darkgrey;
     background-color: transparent;
     cursor: pointer;
+}
+
+.upcoming-tasks-container {
+    box-sizing: border-box;
+    padding: 0px 8px;
+}
+
+.upcoming-task-title {
+    font-size: var(--task-title-font-size);
+}
+
+.upcoming-task-description {
+    font-size: var(--task-description-font-size);
+    color: var(--task-description-color)
+}
+
+.upcoming-task-time {
+    font-size: var(--task-due-time-font-size);
+    color: var(--task-due-time-color);
+}
+
+.upcoming-task-project {
+    font-size: var(--task-project-label-font-size);
+    color: var(--task-project-label-color)
 }

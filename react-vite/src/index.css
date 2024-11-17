@@ -23,6 +23,7 @@
     --task-option-buttons-hover-background: rgba(222, 222, 222, 0.5);
     --task-option-buttons-hover-border-radius: 3px;
     --task-due-time-font-size: 12px;
+    --task-due-time-color: #7c59be;
     --task-project-label-font-size: 12px;
     --task-project-label-color: grey;
     --task-border-bottom: 1px solid rgb(232, 232, 232);

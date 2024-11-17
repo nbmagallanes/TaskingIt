@@ -80,13 +80,15 @@ export default function Upcoming() {
         <div className='upcoming-page-container'>
             <div className='upcoming-top-container'>
                 <h1 className='upcoming-title'>Upcoming</h1>
-                {/* <p>Date placeholder</p> */}
+                <p className='upcoming-month'>{newDateToday.toLocaleDateString('default', { month: 'long', year: 'numeric'})}</p>
             </div>
             <div className='upcoming-middle-container'></div>
             <div className='upcoming-bottom-container'>
                 {upcomingData && ( upcomingData.map(data => (
                     <div key={data.id} className='upcoming-date-task-container'>
-                        <p>{`${data.displayDate[1]} • ${data.id === 0 ? 'Today' : (data.id === 1 ? 'Tomorrow' : data.displayDate[0])}`}</p>
+                        <div className='upcoming-day-header'>
+                            <p className='upcoming-dates'>{`${data.displayDate[1]} • ${data.id === 0 ? 'Today' : (data.id === 1 ? 'Tomorrow' : data.displayDate[0])}`}</p>
+                        </div>
                         <div className='upcoming-tasks-container'>
                             {data.tasks ? (
                                 data.tasks.map( task => (
@@ -95,9 +97,10 @@ export default function Upcoming() {
                                             <button className='upcoming-task-button'></button>
                                         </div>
                                         <div className='upcoming-task-info'>
-                                            <p>{task.title}</p>
-                                            <p>{task.due_time}</p>
-                                            <p>{getTaskProject(task.project_id, task.section_id)}</p>
+                                            <p className='upcoming-task-title'>{task.title}</p>
+                                            <p className='upcoming-task-description'>{task.description}</p>
+                                            <p className='upcoming-task-time'>{task.due_time}</p>
+                                            <p className='upcoming-task-project'>{getTaskProject(task.project_id, task.section_id)}</p>
                                         </div>
                                     </div>
                                 ))
