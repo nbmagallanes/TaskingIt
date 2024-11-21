@@ -78,7 +78,7 @@ function UserNavigation() {
         </div>
         <div className="usernav-project-container">
             <div className="usernav-tab my-projects-container">
-                <NavLink className="my-projects" style={{gap: '0px'}}>
+                <NavLink to={`/${user?.id}/projects`}className="my-projects" style={{gap: '0px'}}>
                     My Projects
                 </NavLink>
                 <div className="tooltip">
