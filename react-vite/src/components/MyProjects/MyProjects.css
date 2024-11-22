@@ -1,0 +1,14 @@
+.my-projects-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 55px 80px 55px;
+    max-width: 70%;
+    flex: 1;
+    /* overflow-y: auto; */
+}
+
+.my-projects-title {
+    margin: 20px 0px 15px 0px;
+    font-size: 26px;
+}
