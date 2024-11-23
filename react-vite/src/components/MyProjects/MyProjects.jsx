@@ -28,7 +28,7 @@ export default function MyProjects() {
         />
       </div>
       <div>
-        <p>{`${projects.length-1} projects `}</p>
+        <p>{searchWord.length === 0 ? `${projects.length - 1} projects` : `${projects.length} projects`}</p>
           {projects.map( project => (
               project.name !== 'Inbox' ? (
                   <div key={project.id}>

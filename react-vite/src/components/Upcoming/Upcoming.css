@@ -14,7 +14,7 @@
 .upcoming-title {
     margin: 20px 0px 15px;
     font-size: 26px;
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 .upcoming-month {
