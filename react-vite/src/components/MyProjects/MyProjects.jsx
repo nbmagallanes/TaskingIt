@@ -27,11 +27,12 @@ export default function MyProjects() {
           onChange={(e) => setSearchWord(e.target.value)}
         />
       </div>
+      <div className='my-projects-divider'></div>
       <div>
-        <p>{searchWord.length === 0 ? `${projects.length - 1} projects` : `${projects.length} projects`}</p>
+        <p className='my-projects-count'>{searchWord.length === 0 ? `${projects.length - 1} projects` : `${projects.length} projects`}</p>
           {projects.map( project => (
               project.name !== 'Inbox' ? (
-                  <div key={project.id}>
+                  <div key={project.id} className='my-projects-project-list'>
                       <NavLink to={`/${user?.id}/projects/${project.id}`}>
                           <HiHashtag style={{color:`${project.color}`, fontSize: '16px'}}/>
                           {project.name}
