@@ -12,3 +12,15 @@
     margin: 20px 0px 15px 0px;
     font-size: 26px;
 }
+
+.my-projects-search {
+    border: solid lightgray 1px;
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 3px;
+}
+
+.my-projects-search::placeholder {
+    color: darkgrey;
+    font-size:  14px;
+}

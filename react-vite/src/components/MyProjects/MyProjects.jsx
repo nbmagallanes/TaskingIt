@@ -21,7 +21,7 @@ export default function MyProjects() {
 
       <div>
         <input
-          className="projects-search"
+          className="my-projects-search"
           type="text"
           placeholder="Search projects"
           onChange={(e) => setSearchWord(e.target.value)}
