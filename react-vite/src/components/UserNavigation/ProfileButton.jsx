@@ -43,9 +43,9 @@ function ProfileButton() {
     <>
       <button onClick={toggleMenu}>
         {/* <FaUserCircle style={{fontSize: "30px"}}/> */}
-        <p style={{color:"white", fontSize:'16px'}}>U</p>
+        <p style={{color:"white", fontSize:'16px'}}>{user.first_name[0]}</p>
       </button>
-      <h3 style={{fontSize:'16px', fontWeight: '600'}}>User</h3>
+      <h3 style={{fontSize:'16px', fontWeight: '600'}}>{user.first_name}</h3>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
