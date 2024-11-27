@@ -1,4 +1,3 @@
-// import { NavLink } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import ProjectOptionsButton from "./ProjectOptionsButton";
@@ -77,7 +76,11 @@ function UserNavigation() {
             </NavLink>
         </div>
         <div className="usernav-project-container">
-            <div className="usernav-tab my-projects-container">
+            <div 
+                className={`usernav-tab my-projects-container 
+                    ${window.location.pathname === `/${user?.id}/projects` ? 'active' : ''}`
+                }
+            >
                 <NavLink to={`/${user?.id}/projects`} className="my-projects" style={{gap: '0px'}}>
                     My Projects
                 </NavLink>
@@ -94,8 +97,17 @@ function UserNavigation() {
             <div className="usernav-project-list">
                 {projects.map( project => (
                     project.name !== 'Inbox' ? (
-                        <div key={project.id} className="usernav-tab single-project-container" style={{gap: '0px'}}>
-                            <NavLink to={`/${user?.id}/projects/${project.id}`} className="usernav-tab-project">
+                        <div 
+                            key={project.id} 
+                            className={`usernav-tab single-project-container
+                                ${window.location.pathname === `/${user?.id}/projects/${project.id}` ? 'active' : ''}`
+                            }
+                            style={{gap: '0px'}}
+                        >
+                            <NavLink 
+                                to={`/${user?.id}/projects/${project.id}`} 
+                                className={({ isActive }) => `usernav-tab-project ${isActive ? 'active' : ''}`}
+                            >
                                 <HiHashtag style={{color:`${project.color}`, fontSize: '16px'}}/>
                                 {project.name}
                             </NavLink>

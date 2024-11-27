@@ -7,7 +7,7 @@
     height: 100vh;
     position: sticky;
     /* top: 0;  */
-    background-color: rgba(164, 146, 204, 0.108);
+    background-color: rgba(164, 146, 204, 0.1);
     gap: 15px;
     box-sizing: border-box;
     /* overflow-y: auto; */
@@ -69,8 +69,16 @@
 
 .usernav-tab:hover {
     background-color: rgba(211, 211, 211, 0.45);
+    /* background-color: rgba(164, 146, 204, 0.3); */
     border-radius: 3px;
 }
+
+.usernav-tab.active,
+.my-projects-container.active,
+.single-project-container.active {
+    background-color: rgba(164, 146, 204, 0.3);
+    border-radius: 3px;
+  }
 
 .usernav-tab.add-task > button{
     border: none;
